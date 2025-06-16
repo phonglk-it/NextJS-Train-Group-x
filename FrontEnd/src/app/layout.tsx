@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import "./fontawesome";
 
 export const metadata: Metadata = {
   title: 'Next.js App',

@@ -1,0 +1,161 @@
+.body{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+.containerFluid{
+    max-width: 100%;
+}
+
+.container{
+    max-width: 1320px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+
+.title{
+    font-family: 'Integral CF';
+    font-weight: 700;
+    font-size: 48px;
+    max-width: 654px;
+}
+
+.item{
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    height: 239.58px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    padding-left: 20px;
+    transition: 0.25s;
+}
+
+.item:hover{
+    transform: translateY(-16px)
+}
+
+.stars{
+    width: 138.84px;
+    height: 22.58px;
+    padding-top: 20px;
+}
+
+.customer{
+    display: flex;
+}
+
+.customerName{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.customer img{
+    width: 24px;
+    height: 24px;
+    margin-top: 18px;
+    padding-left: 5px;
+}
+
+.comment{
+    color: #00000099;
+    font-weight: 400;
+    font-size: 16px;
+    max-width: 336px;
+    margin-top: -10px;
+}
+
+.prevBtn,
+.nextBtn {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  font-size: 20px;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.prevBtn:hover,
+.nextBtn:hover {
+    opacity: 1;
+    background-color: #000;
+    color: #fff;
+}
+
+.prevBtn,
+.nextBtn {
+    background-color: #fff;
+    color: #000;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+    width: 30px;
+    height: 30px;
+}
+
+.prevBtn{
+    margin-right: 10px;
+}
+
+.head{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+
+.navButtons{
+    margin-top: 60px;
+}
+
+@media screen and (max-width: 768px){
+    .container{
+        max-width: 720px;
+        padding: 0 10px;
+    }
+
+    .title{
+        max-width: 286px;
+        font-size: 32px;
+    }
+
+    .prevBtn,
+    .nextBtn {
+        width: 25px;
+        height: 25px;
+    }
+
+    .navButtons{
+        margin-top: 50px;
+    }
+
+    .stars{
+        width: 118px;
+        height: 19.19px;
+    }
+
+    .item{
+        max-width:  358px;
+        height: 186.19px;
+        padding-left: 20px;
+    }
+
+    .customerName{
+        font-size: 16px;
+    }
+
+    .customer img{
+        width: 15.44px;
+        height: 15.44px;
+    }
+
+    .comment{
+        max-width: 310px;
+        font-size: 14px;
+    }
+
+}

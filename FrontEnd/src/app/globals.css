@@ -70,4 +70,11 @@ body {
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-} 
+}
+
+@font-face {
+  font-family: 'Integral CF';
+  src: url('/public/fonts/Fontspring-DEMO-integralcf-bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+}
