@@ -4,7 +4,7 @@ import styles from './style.module.css'
 
 const Style = () => {
   return (
-    <div className={clsx(styles.containerFuild, styles.body)}>
+    <div className={clsx(styles.containerFluid, styles.body)}>
         <div className={clsx(styles.container)}>
             <div className={styles.bg}>
                 <p  className={styles.text}>BROWSE BY DRESS STYLE</p>
