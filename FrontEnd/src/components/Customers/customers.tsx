@@ -13,7 +13,7 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 const Customers = () => {
   return (
-    <div className={clsx(styles.containerFuild, styles.body)}>
+    <div className={clsx(styles.containerFluid, styles.body)}>
         <div className={styles.container}>
             <div className={styles.head}>
                 <p className={styles.title}>OUR HAPPY CUSTOMERS</p>
@@ -35,7 +35,8 @@ const Customers = () => {
                 spaceBetween={20}
                 loop={true}
                 breakpoints={{
-                    768: { slidesPerView: 1 },
+                    0: {slidesPerView: 1},
+                    768: { slidesPerView: 2 },
                     1024: { slidesPerView: 3 }
             }}
                 >
