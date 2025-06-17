@@ -11,7 +11,7 @@ import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 
 
-const customers = () => {
+const Customers = () => {
   return (
     <div className={clsx(styles.containerFuild, styles.body)}>
         <div className={styles.container}>
@@ -105,4 +105,4 @@ const customers = () => {
   )
 }
 
-export default customers
+export default Customers

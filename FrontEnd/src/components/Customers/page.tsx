@@ -1,5 +1,6 @@
+import Customers from './customers';
 import Style from './customers';
 
 export default function CustomersPage() {
-  return <Style />;
+  return <Customers />;
 }

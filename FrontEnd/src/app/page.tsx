@@ -1,13 +1,20 @@
 import Link from 'next/link';
-import Style from './Style/style';
-import CustomersPage from './Customers/page';
-import StylePage from './Style/page';
+import Style from '../components/Style/style';
+import CustomersPage from '../components/Customers/page';
+import StylePage from '../components/Style/page';
+import Customers from '@/components/Customers/customers';
 
 export default function Home() {
   return (
     <main>
-      <StylePage />
-      <CustomersPage />
+      <h1>Home Page</h1>
+        <ul>
+          <li>About</li>
+          <li>Contact</li>
+          <li>Blog</li>
+        </ul>
+        <Style />
+        <Customers />
     </main>
   );
 }

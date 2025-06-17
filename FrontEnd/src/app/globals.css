@@ -74,7 +74,7 @@ body {
 
 @font-face {
   font-family: 'Integral CF';
-  src: url('/public/fonts/Fontspring-DEMO-integralcf-bold.otf') format('opentype');
+  src: url('/fonts/Fontspring-DEMO-integralcf-bold.otf') format('opentype');
   font-weight: bold;
   font-style: normal;
 }
