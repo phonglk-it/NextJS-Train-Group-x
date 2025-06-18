@@ -1,22 +1,12 @@
-'use client'
 import clsx from 'clsx';
 import React from 'react'
 import styles from './style.module.css'
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { useEffect } from 'react';
 
 const Style = () => {
-
-    useEffect(() => {
-        AOS.init({ duration: 800, once: true });
-        AOS.refresh();
-    }, []); 
-
-    return (
+  return (
     <div className={clsx(styles.containerFluid, styles.body)}>
         <div className={clsx(styles.container)}>
-            <div data-aos="fade-up" className={styles.bg}>
+            <div className={styles.bg}>
                 <p  className={styles.text}>BROWSE BY DRESS STYLE</p>
                 <div className={styles.styleTop}>
                     <img src="/images/Casual.png" alt="Casual style" />

@@ -1,11 +1,9 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import styles from './cart.module.css';
 import clsx from 'clsx';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleRight, faTrash } from "@fortawesome/free-solid-svg-icons";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 const Cart = () => {
   const [products, setProducts] = useState([
@@ -43,46 +41,40 @@ const Cart = () => {
   };
 
   const increaseQuantity = (id: number) => {
-    setProducts(prev =>
-      prev.map(product =>
-        product.id === id
-          ? { ...product, quantity: product.quantity + 1 }
-          : product
-      )
-    );
-  };
+  setProducts(prev =>
+    prev.map(product =>
+      product.id === id
+        ? { ...product, quantity: product.quantity + 1 }
+        : product
+    )
+  );
+};
 
-  const decreaseQuantity = (id: number) => {
-    setProducts(prev =>
-      prev.map(product =>
-        product.id === id && product.quantity > 1
-          ? { ...product, quantity: product.quantity - 1 }
-          : product
-      )
-    );
-  };
+const decreaseQuantity = (id: number) => {
+  setProducts(prev =>
+    prev.map(product =>
+      product.id === id && product.quantity > 1
+        ? { ...product, quantity: product.quantity - 1 }
+        : product
+    )
+  );
+};
 
-  useEffect(() => {
-    AOS.init({ duration: 800, once: true });
-    AOS.refresh();
-  }, [products]); 
-
-  const subtotal = products.reduce((sum, item) => sum + item.price * item.quantity, 0);
-  const discount = subtotal * 0.2;
-  const deliveryFee = 15;
-  const total = subtotal - discount + deliveryFee;
-
+const subtotal = products.reduce((sum, item) => sum + item.price * item.quantity, 0);
+const discount = subtotal * 0.2;
+const deliveryFee = 15;
+const total = subtotal - discount + deliveryFee;
 
   return (
     <div className={clsx(styles.containerFluid, styles.body)}>
       <div className={styles.container}>
-        <div data-aos="fade-up" className={styles.link}>
+        <div className={styles.link}>
           <p className={styles.titleHome}><a href="#">Home</a></p>
           <FontAwesomeIcon icon={faAngleRight} className={styles.iconNext} />
           <p className={styles.titleCart}>Cart</p>
         </div>
-        <p data-aos="fade-up" className={styles.titlePage}>Your cart</p>
-        <div data-aos="fade-up" className={styles.total}>
+        <p className={styles.titlePage}>Your cart</p>
+        <div className={styles.total}>
           <div className={styles.products}>
             {products.map(product => (
               <div className={styles.item} key={product.id}>
@@ -109,7 +101,7 @@ const Cart = () => {
               </div>
             ))}
           </div>
-          <div data-aos="fade-up" className={styles.summmary}>
+          <div className={styles.summmary}>
             <h3 className={styles.summaryTitle}>Order Summary</h3>
 
             <div className={styles.summaryRow}>

@@ -8,23 +8,14 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowLeft, faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-import { useEffect } from 'react';
 
 
 
 const Customers = () => {
-
-    useEffect(() => {
-        AOS.init({ duration: 800, once: true });
-        AOS.refresh();
-    }, []);
-
-    return (
+  return (
     <div className={clsx(styles.containerFluid, styles.body)}>
         <div className={styles.container}>
-            <div data-aos="fade-up" className={styles.head}>
+            <div className={styles.head}>
                 <p className={styles.title}>OUR HAPPY CUSTOMERS</p>
                 <div className={styles.navButtons}>
                     <button className={styles.prevBtn}>
@@ -36,7 +27,6 @@ const Customers = () => {
                 </div>
             </div>
             <Swiper
-                data-aos="fade-up"
                 modules={[Navigation]}
                 navigation={{
                     prevEl: `.${styles.prevBtn}`,
