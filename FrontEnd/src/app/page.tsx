@@ -5,6 +5,8 @@ import Style from "../components/Style/style";
 import CustomersPage from "../components/Customers/page";
 import StylePage from "../components/Style/page";
 import Customers from "@/components/Customers/customers";
+import Header from "../components/Header/header";
+import Footer from "../components/Footer/footer";
 
 export default function Home() {
   const [showAnnouncement, setShowAnnouncement] = useState(true);

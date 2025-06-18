@@ -9,10 +9,11 @@
   align-items: center;
   position: relative;
   font-family: "Satoshi", sans-serif;
+  font-weight: 400;
 }
 
 .announcementBar a {
-  color: white;
+  color: #fff;
   text-decoration: underline;
 }
 
@@ -28,9 +29,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 40px;
-  border-bottom: 1px solid #eee;
-  background-color: white;
-  font-family: "Satoshi", sans-serif;
+  background-color: #fff;
 }
 
 .navLeft {
@@ -49,11 +48,9 @@
 
 .menu a {
   text-decoration: none;
-  color: black;
-}
-
-.menu a:first-child {
-  font-weight: bold;
+  color: #000;
+  font-family: "Satoshi", sans-serif;
+  font-weight: 400;
 }
 
 .searchAndIcons {

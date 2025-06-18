@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import Link from "next/link";
 import styles from "./header.module.css";
 
 export default function Header() {
@@ -51,32 +52,34 @@ export default function Header() {
               height={24}
             />
           </button>
-          <Image
-            src="/images/Logo-header.png"
-            alt="SHOP.CO"
-            width={120}
-            height={30}
-          />
+          <Link href="/">
+            <Image
+              src="/images/Logo-header.png"
+              alt="SHOP.CO"
+              width={120}
+              height={30}
+            />
+          </Link>
           <ul className={`${styles.menu} ${isMenuOpen ? styles.menuOpen : ""}`}>
             <li>
-              <a href="#" className={styles.menuLinkBold}>
+              <Link href="/" className={styles.menuLinkBold}>
                 Shop &#9662;
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className={styles.menuLink}>
+              <Link href="/on-sale" className={styles.menuLink}>
                 On Sale
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className={styles.menuLink}>
+              <Link href="/new-arrivals" className={styles.menuLink}>
                 New Arrivals
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className={styles.menuLink}>
+              <Link href="/brands" className={styles.menuLink}>
                 Brands
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

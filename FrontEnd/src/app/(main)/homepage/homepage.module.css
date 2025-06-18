@@ -9,7 +9,7 @@
 
 .heroSection {
   background: #f2f0f1;
-  padding: 80px 0 80px 100px;
+  padding: 80px 0 80px 80px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -41,9 +41,9 @@
 .heroDescription {
   font-family: "Satoshi", sans-serif;
   font-size: 16px;
-  color: #444;
+  color: #00000099;
   margin: 24px 0 32px 0;
-  max-width: 545px;
+  max-width: 570px;
 }
 
 .shopNowButton {
@@ -72,37 +72,45 @@
   justify-content: space-between;
   align-items: center;
   padding: 0;
-  margin-top: 32px;
   width: 100%;
-  max-width: 700px;
+  max-width: 600px;
 }
 
 .statColumn {
+  position: relative;
   flex: 1 1 0%;
-  text-align: left;
-  padding: 0 20px;
-  border-right: 1px solid #ccc;
+  text-align: center;
+  padding: 0 5px;
+  border-right: none;
 }
 
-.statColumn:last-child {
-  border-right: none;
+.statColumn:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 30%;
+  right: 0;
+  width: 0;
+  height: 60%;
+  border-right: 0.5px solid #ccc;
 }
 
 .statNumber {
   font-weight: 700;
-  font-size: 32px;
+  font-size: 40px;
   color: #000;
+  font-family: "Satoshi", sans-serif;
+  margin-bottom: 2px;
 }
 
 .statLabel {
-  color: #444;
-  font-size: 15px;
-  margin-top: 8px;
+  color: #00000099;
+  font-size: 16px;
+  font-family: "Satoshi", sans-serif;
 }
 
 .heroImageContainer {
   position: absolute;
-  right: 200px;
+  right: 135px;
   bottom: -100px;
   width: 600px;
   height: 900px;
