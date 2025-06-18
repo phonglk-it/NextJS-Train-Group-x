@@ -23,11 +23,7 @@ export default function Header() {
         <div className={styles.announcementBar}>
           <span>
             Sign up and get 20% off to your first order:{" "}
-<<<<<<< HEAD
             <a href="/login" className={styles.announcementBarLink}>
-=======
-            <a href="#" className={styles.announcementBarLink}>
->>>>>>> origin/main
               Sign Up Now
             </a>
           </span>
@@ -38,8 +34,7 @@ export default function Header() {
             role="button"
             tabIndex={0}
             onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ")
-                setShowAnnouncement(false);
+              if (e.key === "Enter" || e.key === " ") setShowAnnouncement(false);
             }}
           >
             &#10005;
@@ -116,7 +111,7 @@ export default function Header() {
               suppressHydrationWarning
             />
           </div>
-<<<<<<< HEAD
+
           <Link href="/cart">
             <Image
               src="/images/Cart.png"
@@ -127,30 +122,14 @@ export default function Header() {
             />
           </Link>
           <Link href="/login">
-              <Image
-                src="/images/User.png"
-                alt="User"
-                width={24}
-                height={24}
-                className={styles.icon}
-              />
+            <Image
+              src="/images/User.png"
+              alt="User"
+              width={24}
+              height={24}
+              className={styles.icon}
+            />
           </Link>
-=======
-          <Image
-            src="/images/Cart.png"
-            alt="Cart"
-            width={24}
-            height={24}
-            className={styles.icon}
-          />
-          <Image
-            src="/images/User.png"
-            alt="User"
-            width={24}
-            height={24}
-            className={styles.icon}
-          />
->>>>>>> origin/main
         </div>
       </nav>
     </>
