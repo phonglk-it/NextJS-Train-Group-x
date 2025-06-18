@@ -2,7 +2,7 @@
 
 import React from "react";
 import { Star, StarHalf } from "lucide-react";
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import styles from "./productCard.module.scss";
 
 interface ProductCardProps {

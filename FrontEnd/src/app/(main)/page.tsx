@@ -1,5 +1,8 @@
+"use client";
+import React from "react";
 import ProductCard from "@/components/productCard/productCard";
 import styles from "./page.module.scss";
+
 
 export default function Home() {
   const dataMock = [
