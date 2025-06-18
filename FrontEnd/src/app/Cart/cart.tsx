@@ -65,13 +65,12 @@ const Cart = () => {
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
     AOS.refresh();
-  }, [products]); 
+  }, [products]);
 
   const subtotal = products.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const discount = subtotal * 0.2;
   const deliveryFee = 15;
   const total = subtotal - discount + deliveryFee;
-
 
   return (
     <div className={clsx(styles.containerFluid, styles.body)}>
@@ -83,7 +82,7 @@ const Cart = () => {
         </div>
         <p data-aos="fade-up" className={styles.titlePage}>Your cart</p>
         <div data-aos="fade-up" className={styles.total}>
-          <div className={styles.products}>
+          <div data-aos="fade-up" className={styles.products}>
             {products.map(product => (
               <div className={styles.item} key={product.id}>
                 <img src={product.image} alt={product.name} />
@@ -109,7 +108,7 @@ const Cart = () => {
               </div>
             ))}
           </div>
-          <div data-aos="fade-up" className={styles.summmary}>
+          <div data-aos="fade-up" className={styles.summary}>
             <h3 className={styles.summaryTitle}>Order Summary</h3>
 
             <div className={styles.summaryRow}>
