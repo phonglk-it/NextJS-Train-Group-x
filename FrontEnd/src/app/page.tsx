@@ -3,6 +3,7 @@ import Style from '../components/Style/style';
 import CustomersPage from '../components/Customers/page';
 import StylePage from '../components/Style/page';
 import Customers from '@/components/Customers/customers';
+import Cart from './Cart/cart';
 
 export default function Home() {
   return (
@@ -13,8 +14,6 @@ export default function Home() {
           <li>Contact</li>
           <li>Blog</li>
         </ul>
-        <Style />
-        <Customers />
     </main>
   );
 }
