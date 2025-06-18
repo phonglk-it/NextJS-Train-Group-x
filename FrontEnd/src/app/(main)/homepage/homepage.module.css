@@ -1,0 +1,429 @@
+.homepageContainer {
+  max-width: 100%;
+  width: 1320px;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.heroSection {
+  background: #f2f0f1;
+  padding: 80px 0 80px 80px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  height: 650px;
+  width: 100%;
+  position: relative;
+  border: none;
+  box-shadow: none;
+  overflow: hidden;
+}
+
+.heroContent {
+  flex: 0 0 520px;
+  z-index: 2;
+}
+
+.heroTitle {
+  font-family: "Integral CF Bold", sans-serif;
+  font-size: 64px;
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  color: #000;
+  width: 577px;
+}
+
+.heroDescription {
+  font-family: "Satoshi", sans-serif;
+  font-size: 16px;
+  color: #00000099;
+  margin: 24px 0 32px 0;
+  max-width: 570px;
+}
+
+.shopNowButton {
+  background: #000;
+  color: #fff;
+  border: none;
+  border-radius: 62px;
+  padding: 15px 68px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-bottom: 48px;
+  transition: background 0.3s ease;
+  display: inline-block;
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.shopNowButton:hover {
+  background: #333;
+}
+
+.statsContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+  width: 100%;
+  max-width: 600px;
+}
+
+.statColumn {
+  position: relative;
+  flex: 1 1 0%;
+  text-align: center;
+  padding: 0 5px;
+  border-right: none;
+}
+
+.statColumn:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 30%;
+  right: 0;
+  width: 0;
+  height: 60%;
+  border-right: 0.5px solid #ccc;
+}
+
+.statNumber {
+  font-weight: 700;
+  font-size: 40px;
+  color: #000;
+  font-family: "Satoshi", sans-serif;
+  margin-bottom: 2px;
+}
+
+.statLabel {
+  color: #00000099;
+  font-size: 16px;
+  font-family: "Satoshi", sans-serif;
+}
+
+.heroImageContainer {
+  position: absolute;
+  right: 135px;
+  bottom: -100px;
+  width: 600px;
+  height: 900px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.mainImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.blingTopRight {
+  position: absolute;
+  top: 150px;
+  right: 180px;
+  width: 104px;
+  height: 104px;
+  z-index: 3;
+  animation: rotate 5s linear infinite;
+}
+
+.blingBottomLeft {
+  position: absolute;
+  bottom: 410px;
+  left: 700px;
+  width: 56px;
+  height: 56px;
+  z-index: 3;
+  animation: rotate 5s linear infinite;
+}
+
+.brandBar {
+  color: #fff;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  background: #000;
+  padding: 24px 20px;
+  gap: 100px;
+}
+
+.brandLogo {
+  height: 28px;
+  width: auto;
+  filter: brightness(0) invert(1);
+  max-width: 150px;
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .homepageContainer {
+    max-width: 100%;
+  }
+
+  .heroSection {
+    flex-direction: column;
+    padding: 60px 40px;
+    height: auto;
+    text-align: left;
+  }
+
+  .heroContent {
+    flex: none;
+    max-width: 100%;
+    margin-bottom: 40px;
+    padding-left: 0;
+  }
+
+  .heroTitle {
+    font-size: 48px;
+    width: auto;
+  }
+
+  .heroDescription {
+    max-width: 100%;
+  }
+
+  .statsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    max-width: 100%;
+    padding: 0 0;
+    box-sizing: border-box;
+  }
+
+  .statColumn {
+    flex: 0 0 50%;
+    max-width: 50%;
+    border-right: 1px solid #ccc;
+    border-top: none;
+    text-align: center;
+    padding: 16px 0;
+    margin: 0;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .statColumn:nth-child(2) {
+    border-right: none;
+  }
+
+  .statColumn:last-child {
+    flex: 0 0 100%;
+    max-width: 100%;
+    border-right: none;
+    padding-top: 20px;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .heroImageContainer {
+    position: relative;
+    right: auto;
+    bottom: auto;
+    width: 80%;
+    height: 400px;
+    margin-top: 40px;
+  }
+
+  .blingTopRight {
+    top: 20px;
+    right: 20px;
+    width: 80px;
+    height: 80px;
+  }
+
+  .blingBottomLeft {
+    bottom: 20px;
+    left: 20px;
+    width: 40px;
+    height: 40px;
+  }
+
+  .brandBar {
+    flex-wrap: wrap;
+    padding: 24px 20px;
+    gap: 80px;
+    justify-content: center;
+  }
+
+  .brandLogo {
+    height: 28px;
+    width: auto;
+    filter: brightness(0) invert(1);
+    max-width: 250px;
+  }
+
+  .shopNowButton {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+@media (max-width: 768px) {
+  .heroSection {
+    padding: 40px 20px;
+    text-align: left;
+  }
+
+  .heroTitle {
+    font-size: 36px;
+    width: 300px;
+  }
+
+  .shopNowButton {
+    padding: 12px 200px;
+    font-size: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .statNumber {
+    font-size: 28px;
+  }
+
+  .statLabel {
+    font-size: 14px;
+  }
+
+  .heroImageContainer {
+    height: 700px;
+    bottom: -70px;
+  }
+
+  .blingTopRight {
+    top: 850px;
+    right: 150px;
+    width: 60px;
+    height: 60px;
+  }
+
+  .blingBottomLeft {
+    bottom: 430px;
+    left: 160px;
+    width: 30px;
+    height: 30px;
+  }
+
+  .newsletterBanner {
+    flex-direction: column;
+    padding: 30px 20px;
+    margin: 40px auto;
+    max-width: 90%;
+    gap: 20px;
+  }
+
+  .newsletterTitle {
+    font-size: 28px;
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .newsletterForm {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .brandBar {
+    gap: 67px;
+  }
+
+  .brandLogo {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 480px) {
+  .heroSection {
+    padding: 20px;
+    text-align: left;
+  }
+
+  .heroTitle {
+    font-size: 28px;
+  }
+
+  .heroDescription {
+    font-size: 14px;
+  }
+
+  .shopNowButton {
+    padding: 10px 40px;
+    font-size: 16px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .statNumber {
+    font-size: 24px;
+  }
+
+  .statLabel {
+    font-size: 13px;
+  }
+
+  .heroImageContainer {
+    height: 250px;
+  }
+
+  .blingTopRight {
+    width: 50px;
+    height: 50px;
+    top: 20px;
+    right: 20px;
+  }
+
+  .blingBottomLeft {
+    width: 25px;
+    height: 25px;
+    bottom: 20px;
+    left: 20px;
+  }
+
+  .brandBar {
+    padding: 20px 5px;
+    gap: 20px;
+  }
+
+  .brandLogo {
+    max-width: 100px;
+  }
+
+  .newsletterBanner {
+    padding: 20px 10px;
+  }
+
+  .newsletterTitle {
+    font-size: 24px;
+  }
+}
