@@ -21,7 +21,7 @@ export default function Home() {
     },
     {
       id: 3,
-      productPath: "/images/shirt.png",
+      productPath: "/images/shirt-1.png",
       title: "CHECKERED SHIRT",
       rate: 4.8,
       originalPrice: 300,
@@ -55,9 +55,9 @@ export default function Home() {
 
   return (
     <div>
-      <h1>Home Page</h1>
-      <p>Welcome to our website!</p>
+      <h1>NEW ARRIVALS</h1>
       <div className={styles.card}>{renderProductCard()}</div>
     </div>
+    
   );
 }
