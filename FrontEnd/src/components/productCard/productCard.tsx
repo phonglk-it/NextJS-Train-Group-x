@@ -50,7 +50,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
 
       <div className="flex items-center text-sm gap-2">
         {renderStars()}
-        <span className="text-gray-500 text-xs">{rate.toFixed(1)}/5</span>
+        <span className="text-yellow-500 text-xs">{rate.toFixed(1)}/5</span>
       </div>
 
       <div className="flex items-center gap-2">
