@@ -75,7 +75,7 @@ const Cart = () => {
   return (
     <div className={clsx(styles.containerFluid, styles.body)}>
       <div className={styles.container}>
-        <div data-aos="fade-up" className={styles.link}>
+        <div className={styles.link}>
           <p className={styles.titleHome}><a href="#">Home</a></p>
           <FontAwesomeIcon icon={faAngleRight} className={styles.iconNext} />
           <p className={styles.titleCart}>Cart</p>

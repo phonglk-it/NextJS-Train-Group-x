@@ -1,10 +1,9 @@
-/* Global styles */ 
+/* Global styles */
 
 body {
   margin: 0;
 }
 
-/* Main Layout Styles */
 .main-layout {
   min-height: 100vh;
 }
@@ -29,7 +28,6 @@ body {
   font-weight: 500;
 }
 
-/* Blog Layout Styles */
 .blog-layout {
   min-height: 100vh;
   background-color: #f5f5f5;
@@ -73,23 +71,15 @@ body {
 }
 
 @font-face {
-  font-family: 'Integral CF';
-  src: url('/fonts/Fontspring-DEMO-integralcf-bold.otf') format('opentype');
+  font-family: "Integral CF";
+  src: url("/fonts/Fontspring-DEMO-integralcf-bold.otf") format("opentype");
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'Satoshi';
-  src: url('/fonts/Satoshi-Black.otf') format('opentype');
-  font-weight: bold;
-  font-style: normal;
-}
-
-
-@font-face {
-  font-family: "Inter";
-  src: url("/fonts/Inter-VariableFont_opsz,wght.ttf") format("opentype");
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-Regular.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
 }
