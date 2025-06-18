@@ -86,8 +86,6 @@ const Customers = () => {
               </p>
             </div>
           </SwiperSlide>
-
-          {/* Repeat slides if needed */}
         </Swiper>
       </div>
     </div>

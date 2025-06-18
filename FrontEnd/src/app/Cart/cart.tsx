@@ -65,7 +65,7 @@ const Cart = () => {
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
     AOS.refresh();
-  }, [products]);
+  }, []);
 
   const subtotal = products.reduce((sum, item) => sum + item.price * item.quantity, 0);
   const discount = subtotal * 0.2;
