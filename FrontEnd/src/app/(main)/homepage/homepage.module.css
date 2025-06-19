@@ -1,6 +1,7 @@
 .homepageContainer {
-  max-width: 100%;
-  width: 1320px;
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
   overflow-x: hidden;
   display: flex;
   flex-direction: column;
@@ -16,6 +17,8 @@
   align-items: center;
   height: 650px;
   width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
   position: relative;
   border: none;
   box-shadow: none;
