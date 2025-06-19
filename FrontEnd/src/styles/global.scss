@@ -1,7 +1,14 @@
 /* global.scss */
 
+// Global styles
+@import "./style.scss";
+@import "./variable.scss";
+@import "./mixin.scss";
 
-// Global styles 
-@import './style.scss';
-@import './variable.scss';
-@import './mixin.scss';
+@font-face {
+  font-family: "Satoshi";
+  src: url("/fonts/Satoshi-Black.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
