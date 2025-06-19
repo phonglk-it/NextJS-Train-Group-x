@@ -1,11 +1,11 @@
-'use client';
-import Link from 'next/link';
-import { useState } from 'react';
-import CustomersPage from '../components/Customers/page';
-import StylePage from '../components/Style/page';
-import Header from '../components/Header/header';
-import Footer from '../components/Footer/footer';
-
+"use client";
+import Link from "next/link";
+import { useState } from "react";
+import CustomersPage from "../components/Customers/page";
+import StylePage from "../components/Style/page";
+import Header from "../components/Header/header";
+import Footer from "../components/Footer/footer";
+import HomePage from "./(main)/homepage/page";
 
 export default function Home() {
   const [showAnnouncement, setShowAnnouncement] = useState(true);
@@ -13,13 +13,7 @@ export default function Home() {
   return (
     <main>
       <Header />
-
-      {/* Optional announcement logic if needed */}
-      {showAnnouncement && (
-        <div style={{ background: '#ffefc5', padding: '10px', textAlign: 'center' }}>
-          <p>This is an announcement bar. <button onClick={() => setShowAnnouncement(false)}>Dismiss</button></p>
-        </div>
-      )}
+      <HomePage />
       <CustomersPage />
       <StylePage />
 

@@ -8,6 +8,8 @@ import {
   faStarHalf,
 } from "@fortawesome/free-solid-svg-icons";
 import localFont from "next/font/local";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
 
 const reviews = [
   {
@@ -158,6 +160,8 @@ export default function ProductDetailPage() {
   const [hoverRating, setHoverRating] = useState<number | null>(null);
   const [hoverHalf, setHoverHalf] = useState<boolean>(false);
   const [showSortDropdown, setShowSortDropdown] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const [mobileLoadMore, setMobileLoadMore] = useState(3);
 
   const reviewNames = Array.from(new Set(reviews.map((r) => r.name)));
 
@@ -179,6 +183,19 @@ export default function ProductDetailPage() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [showFilter]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (!isMobile) setMobileLoadMore(3);
+  }, [isMobile]);
 
   const loadMoreReviews = () => {
     setLoadMore((prev) => prev + 2);
@@ -297,6 +314,10 @@ export default function ProductDetailPage() {
       setHoverRating(star);
       setHoverHalf(false);
     }
+  };
+
+  const handleMobileLoadMore = () => {
+    setMobileLoadMore((prev) => prev + 3);
   };
 
   const tabContent = () => {
@@ -448,38 +469,55 @@ export default function ProductDetailPage() {
               </div>
             </div>
             <div className={styles.reviewsGrid}>
-              {getSortedReviews()
-                .slice(0, loadMore)
-                .map((r, i) => (
-                  <div
-                    key={i}
-                    className={`${styles.reviewCard} ${
-                      r.highlight ? styles.highlight : ""
-                    }`}
-                  >
-                    <div className={styles.reviewStars}>
-                      {renderStars(r.rating)}
-                    </div>
-                    <div className={styles.reviewNameRow}>
-                      <span className={styles.reviewName}>{r.name}</span>
-                      <img
-                        src="/images/review-check.png"
-                        alt="verified"
-                        width={24}
-                        height={24}
-                        className={styles.verifiedIcon}
-                        style={{ marginLeft: 4 }}
-                      />
-                    </div>
-                    <div className={styles.reviewText}>{r.text}</div>
-                    <div className={styles.reviewDate}>Posted on {r.date}</div>
-                    <button className={styles.reviewMenuBtn}>⋯</button>
+              {(isMobile
+                ? getSortedReviews().slice(0, mobileLoadMore)
+                : getSortedReviews().slice(0, loadMore)
+              ).map((r, i) => (
+                <div
+                  key={i}
+                  className={`${styles.reviewCard} ${
+                    r.highlight ? styles.highlight : ""
+                  }`}
+                >
+                  <div className={styles.reviewStars}>
+                    {renderStars(r.rating)}
                   </div>
-                ))}
+                  <div className={styles.reviewNameRow}>
+                    <span className={styles.reviewName}>{r.name}</span>
+                    <img
+                      src="/images/review-check.png"
+                      alt="verified"
+                      width={24}
+                      height={24}
+                      className={styles.verifiedIcon}
+                      style={{ marginLeft: 4 }}
+                    />
+                  </div>
+                  <div className={styles.reviewText}>{r.text}</div>
+                  <div className={styles.reviewDate}>Posted on {r.date}</div>
+                  {!isMobile && (
+                    <button className={styles.reviewMenuBtn}>⋯</button>
+                  )}
+                </div>
+              ))}
             </div>
-            <button className={styles.loadMoreBtn} onClick={loadMoreReviews}>
-              Load More Reviews
-            </button>
+            {isMobile
+              ? getSortedReviews().length > mobileLoadMore && (
+                  <button
+                    className={styles.loadMoreBtn}
+                    onClick={handleMobileLoadMore}
+                  >
+                    Load More Reviews
+                  </button>
+                )
+              : getSortedReviews().length > loadMore && (
+                  <button
+                    className={styles.loadMoreBtn}
+                    onClick={loadMoreReviews}
+                  >
+                    Load More Reviews
+                  </button>
+                )}
           </div>
         );
       case "faqs":
@@ -529,7 +567,7 @@ export default function ProductDetailPage() {
               src={galleryImages[selectedImg].main}
               alt={galleryImages[selectedImg].alt}
               width={350}
-              height={350}
+              height={550}
             />
           </div>
         </div>
@@ -645,45 +683,99 @@ export default function ProductDetailPage() {
 
       <div className={styles.suggestSection}>
         <h2 className={styles.suggestTitle}>YOU MIGHT ALSO LIKE</h2>
-        <div className={styles.suggestGrid}>
-          {suggestions.map((item, idx) => (
-            <div key={idx} className={styles.suggestCard}>
-              <div className={styles.suggestImgWrap}>
-                <Image
-                  src={item.img}
-                  alt={item.name}
-                  width={180}
-                  height={180}
-                />
-              </div>
-              <div className={styles.suggestName}>{item.name}</div>
-              <div className={styles.suggestRating}>
-                <div className={styles.reviewStars} style={{ marginBottom: 0 }}>
-                  {renderStars(item.rating)}
+        {isMobile ? (
+          <Swiper
+            spaceBetween={16}
+            slidesPerView={2}
+            style={{ paddingBottom: 8 }}
+          >
+            {suggestions.map((item, idx) => (
+              <SwiperSlide key={idx}>
+                <div className={styles.suggestCard}>
+                  <div className={styles.suggestImgWrap}>
+                    <Image
+                      src={item.img}
+                      alt={item.name}
+                      width={180}
+                      height={180}
+                    />
+                  </div>
+                  <div className={styles.suggestName}>{item.name}</div>
+                  <div className={styles.suggestRating}>
+                    <div
+                      className={styles.reviewStars}
+                      style={{ marginBottom: 0 }}
+                    >
+                      {renderStars(item.rating)}
+                    </div>
+                    <span className={styles.suggestRatingText}>
+                      <span style={{ fontWeight: 400 }}>
+                        {item.ratingText.split("/")[0]}
+                      </span>
+                      <span className={styles.scoreLight}>/5</span>
+                    </span>
+                  </div>
+                  <div className={styles.suggestPriceRow}>
+                    <span className={styles.suggestPrice}>${item.price}</span>
+                    {item.oldPrice && (
+                      <span className={styles.suggestOldPrice}>
+                        ${item.oldPrice}
+                      </span>
+                    )}
+                    {item.discount && (
+                      <span className={styles.suggestDiscount}>
+                        {item.discount}
+                      </span>
+                    )}
+                  </div>
                 </div>
-                <span className={styles.suggestRatingText}>
-                  <span style={{ fontWeight: 400 }}>
-                    {item.ratingText.split("/")[0]}
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        ) : (
+          <div className={styles.suggestGrid}>
+            {suggestions.map((item, idx) => (
+              <div key={idx} className={styles.suggestCard}>
+                <div className={styles.suggestImgWrap}>
+                  <Image
+                    src={item.img}
+                    alt={item.name}
+                    width={180}
+                    height={180}
+                  />
+                </div>
+                <div className={styles.suggestName}>{item.name}</div>
+                <div className={styles.suggestRating}>
+                  <div
+                    className={styles.reviewStars}
+                    style={{ marginBottom: 0 }}
+                  >
+                    {renderStars(item.rating)}
+                  </div>
+                  <span className={styles.suggestRatingText}>
+                    <span style={{ fontWeight: 400 }}>
+                      {item.ratingText.split("/")[0]}
+                    </span>
+                    <span className={styles.scoreLight}>/5</span>
                   </span>
-                  <span className={styles.scoreLight}>/5</span>
-                </span>
+                </div>
+                <div className={styles.suggestPriceRow}>
+                  <span className={styles.suggestPrice}>${item.price}</span>
+                  {item.oldPrice && (
+                    <span className={styles.suggestOldPrice}>
+                      ${item.oldPrice}
+                    </span>
+                  )}
+                  {item.discount && (
+                    <span className={styles.suggestDiscount}>
+                      {item.discount}
+                    </span>
+                  )}
+                </div>
               </div>
-              <div className={styles.suggestPriceRow}>
-                <span className={styles.suggestPrice}>${item.price}</span>
-                {item.oldPrice && (
-                  <span className={styles.suggestOldPrice}>
-                    ${item.oldPrice}
-                  </span>
-                )}
-                {item.discount && (
-                  <span className={styles.suggestDiscount}>
-                    {item.discount}
-                  </span>
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        )}
       </div>
 
       {showReviewModal && (

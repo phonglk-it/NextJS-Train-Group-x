@@ -23,18 +23,19 @@ export default function Header() {
         <div className={styles.announcementBar}>
           <span>
             Sign up and get 20% off to your first order:{" "}
-            <a href="/login" className={styles.announcementBarLink}>
+            <Link href="/login" className={styles.announcementBarLink}>
               Sign Up Now
-            </a>
+            </Link>
           </span>
           <span
             onClick={() => setShowAnnouncement(false)}
-            className={styles.closeButton}
+            className={styles.announcementBarClose}
             aria-label="Close announcement bar"
             role="button"
             tabIndex={0}
             onKeyDown={(e) => {
-              if (e.key === "Enter" || e.key === " ") setShowAnnouncement(false);
+              if (e.key === "Enter" || e.key === " ")
+                setShowAnnouncement(false);
             }}
           >
             &#10005;
