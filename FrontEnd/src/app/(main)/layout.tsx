@@ -8,7 +8,7 @@ export default function MainLayout({
 }) {
   return (
     <div className={styles.mainLayout}>
-      {/* <header className={styles.header}>
+      <header className={styles.header}>
         <nav className={styles.nav}>
           <ul className={styles.navList}>
             <li>
@@ -33,7 +33,7 @@ export default function MainLayout({
             </li>
           </ul>
         </nav>
-      </header> */}
+      </header>
       <main className={styles.main}>{children}</main>
     </div>
   );

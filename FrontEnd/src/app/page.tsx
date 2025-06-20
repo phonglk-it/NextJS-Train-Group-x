@@ -1,15 +1,12 @@
-"use client";
+'use client';
 
-import React from "react";
-import ProductsPage from "../components/ProductsPage/page";
-
+import ProductsCart from '@/components/ProductCart/ProductCart';
 
 export default function Home() {
-  const [showAnnouncement, setShowAnnouncement] = React.useState(true);
-
   return (
     <main>
-      <ProductsPage />
+      <h1>Trang chủ</h1>
+      <ProductsCart />
     </main>
   );
 }
