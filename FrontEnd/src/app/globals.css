@@ -1,12 +1,15 @@
 /* Global styles */
 
 body {
-  font-family: 'Integral CF', sans-serif;
-  background: #f0f0f0;
+  font-family: 'Satoshi', sans-serif;
+  background: #FFFFFF;
   margin: 0;
   padding: 0;
 }
 
+h1, h2, h3 {
+  font-family: 'Integral CF', sans-serif;
+}
 .main-layout {
   min-height: 100vh;
 }
