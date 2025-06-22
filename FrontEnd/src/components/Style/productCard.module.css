@@ -1,0 +1,92 @@
+.productCard {
+  /* background-color: #f9f9f9; */
+  /* padding: 16px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  row-gap: 4px;
+}
+
+.imageWrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+  width: 295px;
+  height: 298px;
+}
+
+.productName {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: left;
+}
+
+.rating {
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.star {
+  color: #ddd;
+  font-size: 12px;
+}
+
+.filled {
+  color: #ffc107;
+}
+
+.score {
+  font-size: 12px;
+  color: #555;
+}
+
+.price {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.current {
+  color: #000;
+}
+
+.oldGroup {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.old {
+  text-decoration: line-through;
+  color: gray;
+  font-size: 14px;
+}
+
+.discount {
+  background-color: #ffe8e8;
+  color: #ff3b3b;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 12px;
+}
+
+/* Animation khởi tạo */
+.animate {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 1s ease;
+}
+
+/* Khi visible (scroll vào viewport) */
+.visible {
+  opacity: 1;
+  transform: translateY(0);
+}

@@ -1,0 +1,32 @@
+.productSection {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.sectionTitle {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+.productGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 32px; /* Khoảng cách cố định giữa các sản phẩm */
+}
+
+.viewAll {
+  margin-top: 30px;
+  padding: 8px 20px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.viewAll:hover {
+  background-color: #f4f4f4;
+}
