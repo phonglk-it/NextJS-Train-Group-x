@@ -1,0 +1,173 @@
+/* Wrapper toàn bộ trang */
+.pageContainer {
+  padding: 24px;
+}
+
+/* Header Row chứa title + sort + filter */
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+.headerRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-left: auto;
+}
+
+.productCount {
+  color: #777;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+.sortWrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sortLabel {
+  color: #777;
+  font-size: 14px;
+}
+
+.sortButton {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+  color: black;
+}
+
+.chevronIcon {
+  font-size: 10px;
+}
+
+.filterBtn {
+  border: 1px solid #ccc;
+  background: white;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.filterBtn:hover {
+  background: #f0f0f0;
+}
+
+
+/* Grid sản phẩm */
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.productCard {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  text-align: center;
+}
+
+.productImage {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.productTitle {
+  font-size: 14px;
+  font-weight: bold;
+  margin: 8px 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.productPrice {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.productOldPrice {
+  text-decoration: line-through;
+  color: #777;
+  margin-left: 8px;
+  font-size: 14px;
+}
+
+.productDiscount {
+  color: red;
+  font-size: 12px;
+  margin-left: 8px;
+  font-weight: bold;
+}
+
+.rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 8px 0;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.pageBtn {
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  background: white;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.pageBtn.active {
+  background: black;
+  color: white;
+  border-color: black;
+}
+
+/* Responsive cho mobile */
+@media (max-width: 768px) {
+  .productGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .headerRow {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .right {
+    width: 100%;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
