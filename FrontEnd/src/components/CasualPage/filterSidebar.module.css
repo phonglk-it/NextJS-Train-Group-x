@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 .title {
   font-size: 20px;
@@ -107,17 +108,20 @@
 }
 
 .applyBtnRounded {
-  margin-top: 12px;
-  width: 100%;
-  padding: 10px;
+  position: sticky;
+  bottom: 20px;
   background-color: black;
   color: white;
   border: none;
   border-radius: 100px;
+  padding: 14px 0;
+  font-size: 15px;
   font-weight: bold;
-  cursor: pointer;
-  font-size: 14px;
+  text-align: center;
+  width: 100%;
+  margin-top: 32px;
 }
+
 .sliderWrapper {
   margin-top: 12px;
 }
@@ -172,12 +176,31 @@
 }
 
 .sidebar {
-  width: 247px;
-  min-width: 200px;
+  max-width: 240px;
+  background-color: #f4f4f4;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  color: #333;
+  margin-left: auto;
 }
 
 @media (max-width: 768px) {
   .sidebar {
-    width: 100%;
+    max-width: 390px;
+  }
+  .closeBtn {
+    display: block;
+  }
+
+  .filterIcon {
+    display: none;
   }
 }

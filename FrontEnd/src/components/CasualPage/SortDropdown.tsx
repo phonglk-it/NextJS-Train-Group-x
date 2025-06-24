@@ -4,7 +4,7 @@ import React from "react";
 import styles from "./sortDropdown.module.css";
 import { FaChevronDown, FaSlidersH } from "react-icons/fa";
 
-export default function SortDropdown() {
+export default function SortDropdown({ onFilterClick }: { onFilterClick: () => void }) {
   return (
     <div className={styles.headerRow}>
     <h2 className={styles.title}>Casual</h2>
@@ -17,7 +17,7 @@ export default function SortDropdown() {
           <FaChevronDown className={styles.chevronIcon} />
         </button>
       </div>
-      <button className={styles.filterBtn}>
+      <button className={styles.filterBtn} onClick={onFilterClick}>
         <FaSlidersH />
       </button>
     </div>
