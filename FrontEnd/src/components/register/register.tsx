@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import styles from './register.module.css';
 import clsx from 'clsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faEye, faEyeSlash, faEnvelope  } from '@fortawesome/free-solid-svg-icons';
+import { faEye, faEyeSlash, faEnvelope  } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 
 const Register = () => {
