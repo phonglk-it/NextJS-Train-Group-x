@@ -2,6 +2,9 @@
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import styles from "./homepage.module.css";
+import ProductSection from "@/components/Product/ProductSection";
+import { newArrivals, topSelling } from "@/data/products-data";
+
 
 interface CounterProps {
   target: string;
@@ -134,6 +137,8 @@ export default function Home() {
           />
         </div>
       </section>
+      <ProductSection title="NEW ARRIVALS" products={newArrivals} />
+      <ProductSection title="TOP SELLING" products={topSelling} />
     </div>
   );
 }
