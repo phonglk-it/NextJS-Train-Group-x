@@ -138,8 +138,9 @@
 .divider {
   width: 247px;
   height: 1px;
-  background-color: rgba(0, 0, 0, 0.1); 
+  
   margin: 12px 0;
+  border: 1px solid #0000001A;
 }
 /* #category */
 .categoryList {
@@ -177,9 +178,9 @@
 
 .sidebar {
   max-width: 240px;
-  background-color: #f4f4f4;
   padding: 20px;
-  border-radius: 12px;
+  border-radius: 20px;
+  border: 1px solid #0000001A;
 }
 
 .closeBtn {
