@@ -1,0 +1,207 @@
+/* File: src/components/CasualPage/filterSidebar.module.css */
+.body{
+    font-family: "Satoshi";
+}
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 24px;
+}
+.filterIcon {
+  width: 20.25px;
+  height: 18.75px;
+  color: #333; 
+  flex-shrink: 0;
+}
+.filterSection {
+  margin-bottom: 32px;
+}
+
+.filterSection > h4 {
+  position: relative;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.filterSection > h4::after {
+  content: '▼';
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 12px;
+  transition: transform 0.3s ease;
+}
+
+.filterSection.collapsed > h4::after {
+  transform: rotate(-90deg);
+}
+
+.filterSection ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.filterSection li {
+  margin-bottom: 8px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.colorDot {
+  width: 37px;
+  height: 37px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+  cursor: pointer;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.selected {
+  border: 2px solid black;
+}
+
+.checkmark {
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  pointer-events: none;
+}
+
+.sizes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sizeBtn {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sizeBtnSelected {
+  background-color: black;
+  color: #F0F0F0;
+  border-color: black;
+}
+
+.applyBtnRounded {
+  position: sticky;
+  bottom: 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 100px;
+  padding: 14px 0;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+  margin-top: 32px;
+}
+
+.sliderWrapper {
+  margin-top: 12px;
+}
+
+.priceLabels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-top: 8px;
+  padding: 0 2px;
+}
+
+
+.divider {
+  width: 247px;
+  height: 1px;
+  
+  margin: 12px 0;
+  border: 1px solid #0000001A;
+}
+/* #category */
+.categoryList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.categoryItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.categoryItem:hover {
+  background-color: black;
+  color: white;
+}
+
+.categoryItem:hover .arrow {
+  color: white;
+}
+
+.arrow {
+  font-size: 16px;
+  color: #333;
+  transition: color 0.2s ease;
+}
+
+.sidebar {
+  max-width: 240px;
+  padding: 20px;
+  border-radius: 20px;
+  border: 1px solid #0000001A;
+}
+
+.closeBtn {
+  background: transparent;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  display: none;
+  color: #333;
+  margin-left: auto;
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    max-width: 390px;
+  }
+  .closeBtn {
+    display: block;
+  }
+
+  .filterIcon {
+    display: none;
+  }
+}

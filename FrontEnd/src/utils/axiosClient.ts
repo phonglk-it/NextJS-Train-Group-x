@@ -25,6 +25,9 @@ const UseAxiosAuth = () => {
   useEffect(() => {
     const requestIntercept = axiosAuth.interceptors.request.use(
       config => {
+        if (!config.headers) {
+          config.headers = {};
+        }
         if (!config.headers.Authorization) {
           config.headers.Authorization = `Bearer ${session?.user?.access as string}`;
         }

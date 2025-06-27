@@ -91,4 +91,32 @@ export const casual: Product[] = [
     rating: 4.5,
     image: "/images/tshirt-2.png",
   },
+  {
+    name: "T-shirt with Tape Details",
+    price: 120,
+    rating: 4.5,
+    image: "/images/tshirt-1.png",
+  },
+  {
+    name: "Skinny Fit Jeans",
+    price: 240,
+    oldPrice: 260,
+    discount: "-20%",
+    rating: 3.5,
+    image: "/images/jeans-1.png",
+  },
+  {
+    name: "Checkered Shirt",
+    price: 180,
+    rating: 4.5,
+    image: "/images/shirt-1.png",
+  },
+  {
+    name: "Sleeve Striped T-shirt",
+    price: 130,
+    oldPrice: 160,
+    discount: "-30%",
+    rating: 4.5,
+    image: "/images/tshirt-2.png",
+  },
 ];

@@ -4,13 +4,6 @@
   gap: 24px;
 }
 
-.sidebar {
-  width: 240px;
-  background-color: #f4f4f4;
-  padding: 20px;
-  border-radius: 12px;
-}
-
 .content {
   flex: 1;
 }
@@ -25,4 +18,43 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(295px, 1fr));
   gap: 24px;
+}
+
+.header {
+  /* display: flex; */
+  justify-content: space-between;
+  align-items: center;
+  /* margin-bottom: 20px; */
+}
+
+/* Tuỳ chọn: Phần Sort Dropdown (nếu có style riêng) */
+.sortDropdown {
+  font-size: 14px;
+  border: 1px solid #ccc;
+  padding: 6px 10px;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+}
+
+/* Pagination section dưới cùng */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+  gap: 8px;
+}
+
+.pageButton {
+  padding: 8px 14px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.pageButton.active {
+  background-color: black;
+  color: white;
+  font-weight: bold;
 }
