@@ -1,0 +1,41 @@
+.pageContainer {
+  padding: 24px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.mainContent {
+  flex: 1;
+  min-width: 280px;
+}
+
+.productHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+@media (max-width: 768px) {
+  .pageContainer {
+    flex-direction: column;
+  }
+
+  .productGrid {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,54 @@
+.filterToggleBtn {
+  display: none;
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  background-color: #F0F0F0;
+  z-index: 1000;
+  color: #333; 
+  border: none;
+  padding: 8px;
+  border-radius: 20%;
+  text-align: center;
+}
+
+.filterToggleBtn svg {
+  margin-right: 4px;
+}
+
+@media (max-width: 768px) {
+  .filterToggleBtn {
+    display: flex;
+  }
+  
+
+  .sidebarWrapper {
+    position: fixed;
+    bottom: 0;
+    right: 100%;
+    /* max-width: 390px; */
+    height: 90vh;
+    min-height: 550px;
+    background-color: white;
+    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1001;
+    transition: left 0.3s ease;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    overflow-y: auto;
+   }
+
+  .sidebarWrapper.open {
+    right: 0
+  }
+
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+  }
+}
