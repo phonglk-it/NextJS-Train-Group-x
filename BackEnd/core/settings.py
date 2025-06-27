@@ -12,6 +12,10 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 from datetime import timedelta
+from os import getenv
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -42,6 +46,7 @@ INSTALLED_APPS = [
     "drf_spectacular_sidecar",
     "rest_framework",
     "rest_framework_simplejwt",
+    "products",
 ]
 
 MIDDLEWARE = [
@@ -117,11 +122,11 @@ SIMPLE_JWT = {
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "product",
-        "USER": "postgres",
-        "PASSWORD": "CQuynh@260519",
-        "HOST": "localhost",
-        "PORT": "5432",
+        "NAME": str(getenv("DATABASE_NAME")),
+        "USER": str(getenv("DATABASE_USER")),
+        "PASSWORD": str(getenv("DATABASE_PASSWORD")),
+        "HOST": str(getenv("DATABASE_HOST")),
+        "PORT": str(getenv("DATABASE_PORT", 5432)),
     }
 }
 
