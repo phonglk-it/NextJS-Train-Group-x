@@ -1,3 +1,5 @@
+from django.conf.urls import include
+
 """
 URL configuration for core project.
 
@@ -16,7 +18,15 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from drf_spectacular import views as spectacular_views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("admin/", admin.site.urls),
+    # path("product/", include("products.urls")),
+    path("api/schema/", spectacular_views.SpectacularAPIView.as_view(), name="schema"),
+    path(
+        "api/schema/swagger-ui/",
+        spectacular_views.SpectacularSwaggerView.as_view(url_name="schema"),
+        name="swagger-ui",
+    ),
 ]

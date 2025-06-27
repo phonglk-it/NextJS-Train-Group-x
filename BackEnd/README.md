@@ -1,8 +1,6 @@
-# Nutramigen
-
 ## Prequisites
 
-There are several prequisites to get started with Nutramigen.
+There are several prequisites to get started with.
 
 ### venv (optional but recommended)
 
@@ -83,4 +81,3 @@ When created, the new module should have the following structure:
 - `views.py` - This file contains the views for current module.
 - `urls.py` - This file contains the urls for current module. You should write the API in `views.py` and include it in
   this file.
-
