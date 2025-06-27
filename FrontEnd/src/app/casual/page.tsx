@@ -12,9 +12,31 @@ import Footer from "@/components/Footer/footer";
 
 export default function CasualPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const [sort, setSort] = useState("popular");
+  const [products, setProducts] = useState(casual);
 
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
   const closeSidebar = () => setSidebarOpen(false);
+
+  function handleSortChange(sortValue: string) {
+    setSort(sortValue);
+    setProducts((prevProducts) => {
+      let sorted = [...prevProducts];
+      if (sortValue === "lowToHigh") {
+        sorted.sort((a, b) => a.price - b.price);
+      } else if (sortValue === "highToLow") {
+        sorted.sort((a, b) => b.price - a.price);
+      } else if (sortValue === "newest") {
+        return [...casual]; // giả sử dữ liệu đã sắp xếp theo newest
+      } else if (sortValue === "rating") {
+        sorted.sort((a, b) => b.rating - a.rating);
+      } else {
+        return [...casual]; // popular mặc định
+      }
+      return sorted;
+    });
+  }
+
   return (
     <div>
       <Header />
@@ -27,13 +49,17 @@ export default function CasualPage() {
         </aside>
         <main className={styles.content}>
           <div className={styles.header}>
-            <SortDropdown onFilterClick={toggleSidebar} />
+            <SortDropdown
+              onSortChange={handleSortChange}
+              onFilterClick={toggleSidebar}
+            />
           </div>
           <div className={styles.productGrid}>
-            {casual.map((product, index) => (
+            {products.map((product, index) => (
               <ProductCard key={index} product={product} />
             ))}
           </div>
+          <hr className={styles.paginationDivider} />
           <Pagination />
         </main>
       </div>

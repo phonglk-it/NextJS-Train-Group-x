@@ -136,9 +136,7 @@
 
 
 .divider {
-  width: 247px;
-  height: 1px;
-  
+  width: 100%;
   margin: 12px 0;
   border: 1px solid #0000001A;
 }
@@ -181,6 +179,8 @@
   padding: 20px;
   border-radius: 20px;
   border: 1px solid #0000001A;
+  background: #fff;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
 }
 
 .closeBtn {
@@ -195,13 +195,193 @@
 
 @media (max-width: 768px) {
   .sidebar {
-    max-width: 390px;
+    max-width: 100vw;
+    width: 100vw;
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    padding: 0 16px 16px 16px;
+    margin: 0;
+    left: 0;
+    right: 0;
+    overflow-x: hidden;
+    position: relative;
+    background: #fff;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
   }
-  .closeBtn {
+  .dragIndicator {
+    width: 48px;
+    height: 5px;
+    background: #e0e0e0;
+    border-radius: 3px;
+    margin: 0 auto 16px auto;
     display: block;
   }
+  .header {
+    width: 100%;
+    justify-content: flex-start;
+    padding: 0 16px 0 16px;
+    position: relative;
+    font-weight: bold;
+    font-size: 20px;
+    text-align: left;
+    margin-bottom: 12px;
+  }
+  .closeBtn {
+    position: absolute;
+    top: 16px;
+    right: 65px;
+    margin: 0;
+    z-index: 10;
+    background: #f4f4f4;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    border: none;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    color: #222;
+    font-weight: bold;
+    transition: background 0.2s;
+  }
+  .closeBtn svg {
+    font-size: 24px;
+    color: #222;
+    font-weight: bold;
+  }
+  .closeBtn:active, .closeBtn:hover {
+    background: #e0e0e0;
+  }
+  .title {
+    text-align: left;
+    width: 100%;
+    font-weight: bold;
+    font-size: 20px;
+    margin-bottom: 0;
+  }
+  .divider {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .filterSection {
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0 4px;
+  }
+  .categoryList, .sizes, .colors {
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  .categoryItem, .sizeBtn, .colorDot {
+    max-width: 100%;
+    box-sizing: border-box;
+    word-break: break-word;
+  }
+  .applyBtnRounded {
+    width: 100%;
+    left: 0;
+    right: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .filterIconDesktop {
+    display: none;
+  }
+}
 
-  .filterIcon {
+.filterIconBtn {
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.filterIconBtn:hover {
+  background: #f0f0f0;
+}
+
+.sidebarCollapsed {
+  max-width: 60px;
+  min-width: 60px;
+  width: 60px;
+  padding: 20px 8px;
+  border-radius: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  background: #fff;
+  position: relative;
+}
+.sidebarCollapsed .title {
+  display: none;
+}
+.sidebarCollapsed .divider,
+.sidebarCollapsed .filterSection,
+.sidebarCollapsed .applyBtnRounded,
+.sidebarCollapsed .closeBtn {
+  display: none !important;
+}
+.filterIconBtnActive {
+  background: #f0f0f0;
+  border: none;
+  border-radius: 6px;
+  padding: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s;
+}
+.filterIconBtnActive img,
+.filterIconBtnActive svg {
+  filter: none;
+}
+
+.filterHeaderLeft {
+  display: flex;
+  align-items: center;
+}
+
+.filterIconText {
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filterIconSvg {
+  font-size: 20px;
+  margin-right: 4px;
+}
+
+@media (max-width: 768px) {
+  .filterHeaderLeft {
+    display: none;
+  }
+}
+
+.filterIconDesktop {
+  display: inline-flex;
+}
+
+@media (max-width: 768px) {
+  .filterHeaderLeft {
+    display: flex;
+  }
+  .filterIconDesktop {
     display: none;
   }
 }
