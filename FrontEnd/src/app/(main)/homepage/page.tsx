@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import styles from "./homepage.module.css";
 import ProductSection from "@/components/Product/ProductSection";
 import { newArrivals, topSelling } from "@/data/products-data";
-
+import { useSearchParams } from "next/navigation";
 
 interface CounterProps {
   target: string;
@@ -44,6 +44,18 @@ const Counter = ({ target, duration }: CounterProps) => {
 };
 
 export default function Home() {
+  const searchParams = useSearchParams();
+
+  useEffect(() => {
+    const scroll = searchParams.get("scroll");
+    if (scroll) {
+      setTimeout(() => {
+        const el = document.getElementById(scroll);
+        if (el) el.scrollIntoView({ behavior: "smooth" });
+      }, 200);
+    }
+  }, [searchParams]);
+
   return (
     <div className={styles.homepageContainer}>
       <section className={styles.heroSection}>
@@ -62,7 +74,15 @@ export default function Home() {
             designed to bring out your individuality and cater to your sense of
             style.
           </p>
-          <button className={styles.shopNowButton}>Shop Now</button>
+          <button
+            className={styles.shopNowButton}
+            onClick={() => {
+              const el = document.getElementById("new-arrivals-section");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Shop Now
+          </button>
           <div className={styles.statsContainer}>
             <div className={styles.statColumn}>
               <h3 className={styles.statNumber}>
@@ -137,8 +157,16 @@ export default function Home() {
           />
         </div>
       </section>
-      <ProductSection title="NEW ARRIVALS" products={newArrivals} />
-      <ProductSection title="TOP SELLING" products={topSelling} />
+      <ProductSection
+        title="NEW ARRIVALS"
+        products={newArrivals}
+        id="new-arrivals-section"
+      />
+      <ProductSection
+        title="TOP SELLING"
+        products={topSelling}
+        id="top-selling-section"
+      />
     </div>
   );
 }
