@@ -5,9 +5,10 @@ import styles from "../Style/productCard.module.css";
 
 interface ProductCardProps {
   product: Product;
+  isMobile?: boolean;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, isMobile }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 

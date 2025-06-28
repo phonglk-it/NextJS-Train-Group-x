@@ -30,3 +30,32 @@
 .viewAll:hover {
   background-color: #f4f4f4;
 }
+
+@media (max-width: 768px) {
+  .productSection {
+    padding: 24px 4px;
+  }
+  .sectionTitle {
+    font-size: 28px;
+    margin-bottom: 18px;
+  }
+  .productGrid {
+    gap: 12px;
+  }
+  /* Swiper slide custom style for mobile */
+  .swiper {
+    padding-bottom: 24px;
+  }
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 80vw !important;
+    max-width: 260px;
+  }
+  .viewAll {
+    padding: 12px 0;
+    width: 100%;
+    font-size: 15px;
+  }
+}

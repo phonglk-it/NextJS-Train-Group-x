@@ -16,8 +16,6 @@ export default function Home() {
     <main>
       <Header />
       <HomePage />
-      <ProductSection title="NEW ARRIVALS" products={newArrivals} />
-      <ProductSection title="TOP SELLING" products={topSelling} />
       <StylePage />
       <CustomersPage />
       <Footer />
