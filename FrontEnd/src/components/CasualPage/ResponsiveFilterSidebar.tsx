@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import FilterSidebar from "./FilterSidebar";
 import styles from "./responsiveFilterSidebar.module.css";
 import { FaSlidersH } from "react-icons/fa";
+import Image from "next/image";
 
 export default function ResponsiveFilterSidebar({
   isOpen,
