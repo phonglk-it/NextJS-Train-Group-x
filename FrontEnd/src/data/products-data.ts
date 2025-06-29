@@ -1,16 +1,15 @@
-
-import { Product } from '@/types/Product';
+import { Product } from "@/types/Product";
 
 export const newArrivals: Product[] = [
   {
-    id: "t-shirt-with-tape-details",
-    name: "T-shirt with Tape Details",
+    id: 1,
+    name: "T-SHIRT WITH TAPE DETAILS",
     price: 120,
     rating: 4.5,
     image: "/images/tshirt-1.png",
   },
   {
-    id: "skinny-fit-jeans",
+    id: 2,
     name: "Skinny Fit Jeans",
     price: 240,
     oldPrice: 260,
@@ -19,15 +18,15 @@ export const newArrivals: Product[] = [
     image: "/images/jeans-1.png",
   },
   {
-    id: "checkered-shirt",
+    id: 3,
     name: "Checkered Shirt",
     price: 180,
     rating: 4.5,
     image: "/images/shirt-1.png",
   },
   {
-    id: "sleeve-striped-t-shirt",
-    name: "Sleeve Striped T-shirt",
+    id: 4,
+    name: "SLEEVE STRIPED T-SHIRT",
     price: 130,
     oldPrice: 160,
     discount: "-30%",
@@ -38,7 +37,7 @@ export const newArrivals: Product[] = [
 
 export const topSelling: Product[] = [
   {
-    id: "vertical-striped-shirt",
+    id: 5,
     name: "Vertical Striped Shirt",
     price: 210,
     rating: 5.0,
@@ -47,21 +46,21 @@ export const topSelling: Product[] = [
     discount: "-20%",
   },
   {
-    id: "courage-graphic-t-shirt",
-    name: "Courage Graphic T-shirt",
+    id: 6,
+    name: "COURAGE GRAPHIC T-SHIRT",
     price: 145,
     rating: 4.0,
     image: "/images/tshirt-3.png",
   },
   {
-    id: "coose-fit-bermura-shorts",
+    id: 7,
     name: "Coose Fit Bermura Shorts",
     price: 80,
     rating: 3.0,
     image: "/images/shorts-1.png",
   },
   {
-    id: "faded-skinny-jeans",
+    id: 8,
     name: "Faded Skinny Jeans",
     price: 210,
     rating: 4.5,
@@ -69,31 +68,30 @@ export const topSelling: Product[] = [
   },
 ];
 
-
 export const casual: Product[] = [
   {
-    id: "gradient-graphic-tshirt",
+    id: 9,
     name: "Gradient Graphic T-shirt",
     price: 145,
     rating: 3.55,
     image: "/images/Gradient-Graphic-T-shirt.png",
   },
   {
-    id: "polo-with-tipping-details",
+    id: 10,
     name: "Polo with Tipping Details",
     price: 180,
     rating: 3.5,
     image: "/images/Polo-with-Tipping-Details.png",
   },
   {
-    id: "black-striped-t-shirt",
+    id: 11,
     name: "Black Striped T-shirt",
     price: 180,
     rating: 4.5,
     image: "/images/Black-Striped-T-shirt.png",
   },
   {
-    id: "skinny-fit-jeans",
+    id: 12,
     name: "Skinny Fit Jeans",
     price: 240,
     oldPrice: 260,
@@ -102,14 +100,14 @@ export const casual: Product[] = [
     image: "/images/jeans-1.png",
   },
   {
-    id: "checkered-shirt",
+    id: 13,
     name: "Checkered Shirt",
     price: 180,
     rating: 4.5,
     image: "/images/shirt-1.png",
   },
   {
-    id: "sleeve-striped-t-shirt",
+    id: 14,
     name: "Sleeve Striped T-shirt",
     price: 130,
     oldPrice: 160,
@@ -118,7 +116,7 @@ export const casual: Product[] = [
     image: "/images/tshirt-2.png",
   },
   {
-    id: "vertical-striped-shirt",
+    id: 15,
     name: "Vertical Striped Shirt",
     price: 210,
     rating: 5.0,
@@ -127,14 +125,14 @@ export const casual: Product[] = [
     discount: "-20%",
   },
   {
-    id: "courage-graphic-t-shirt",
+    id: 16,
     name: "Courage Graphic T-shirt",
     price: 145,
     rating: 4.0,
     image: "/images/tshirt-3.png",
   },
   {
-    id: "coose-fit-bermura-shorts",
+    id: 17,
     name: "Coose Fit Bermura Shorts",
     price: 80,
     rating: 3.0,

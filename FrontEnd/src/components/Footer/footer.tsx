@@ -1,7 +1,29 @@
 "use client";
 import styles from "./footer.module.css";
+import { useState } from "react";
 
 export default function Footer() {
+  const [email, setEmail] = useState("");
+  const [error, setError] = useState("");
+  const [randomId] = useState(() => Math.random());
+
+  const validateEmail = (email: string) => {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) {
+      setError("Please enter your email address.");
+    } else if (!validateEmail(email)) {
+      setError("Invalid email address.");
+    } else {
+      setError("");
+      alert("Subscribed successfully!");
+      setEmail("");
+    }
+  };
+
   return (
     <>
       <div className={styles.newsletterBanner}>
@@ -11,7 +33,7 @@ export default function Footer() {
           OUR LATEST OFFERS
         </div>
         <div className={styles.newsletterForm}>
-          <div style={{ width: "100%" }}>
+          <form style={{ width: "100%" }} onSubmit={handleSubmit}>
             <div style={{ position: "relative", width: "100%" }}>
               <img
                 src="/images/Email.png"
@@ -23,17 +45,33 @@ export default function Footer() {
                 type="email"
                 placeholder="Enter your email address"
                 className={styles.emailInput}
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 suppressHydrationWarning
               />
             </div>
+            {error && (
+              <div
+                style={{
+                  color: "red",
+                  marginTop: 4,
+                  marginBottom: 4,
+                  fontSize: 14,
+                }}
+              >
+                {error}
+              </div>
+            )}
             <button
               key="newsletter-btn"
               className={styles.subscribeButton}
               suppressHydrationWarning
+              type="submit"
+              id={randomId.toString()}
             >
               Subscribe to Newsletter
             </button>
-          </div>
+          </form>
         </div>
       </div>
       <footer className={styles.footer}>

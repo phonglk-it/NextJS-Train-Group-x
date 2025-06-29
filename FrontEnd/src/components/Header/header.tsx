@@ -3,12 +3,16 @@ import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
 import styles from "./header.module.css";
-
+import { useRouter, usePathname } from "next/navigation";
 
 export default function Header() {
   const [showAnnouncement, setShowAnnouncement] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [showMegaMenu, setShowMegaMenu] = useState(false);
+
+  const router = useRouter();
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -16,6 +20,14 @@ export default function Header() {
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
+  };
+
+  // Scroll to section helper
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
   return (
@@ -62,20 +74,78 @@ export default function Header() {
             />
           </Link>
           <ul className={`${styles.menu} ${isMenuOpen ? styles.menuOpen : ""}`}>
-            <li>
-              <Link href="/" className={styles.menuLinkBold}>
+            <li
+              onMouseEnter={() => setShowMegaMenu(true)}
+              onMouseLeave={() => setShowMegaMenu(false)}
+              style={{ position: "relative" }}
+            >
+              <span
+                className={styles.menuLinkBold}
+                style={{ cursor: "pointer" }}
+              >
                 Shop &#9662;
-              </Link>
+              </span>
+              {showMegaMenu && (
+                <div
+                  className={styles.megaMenu}
+                  onMouseEnter={() => setShowMegaMenu(true)}
+                  onMouseLeave={() => setShowMegaMenu(false)}
+                >
+                  <div className={styles.megaMenuGrid}>
+                    <div>
+                      <div className={styles.megaMenuTitle}>
+                        SHOP BY CATEGORY
+                      </div>
+                      <Link href="/casual">Casual</Link>
+                      <Link href="/formal">Formal</Link>
+                      <Link href="/gym">Gym</Link>
+                      <Link href="/party">Party</Link>
+                    </div>
+                  </div>
+                  <button
+                    className={styles.megaMenuClose}
+                    onClick={() => setShowMegaMenu(false)}
+                  >
+                    &times;
+                  </button>
+                </div>
+              )}
             </li>
             <li>
-              <Link href="/on-sale" className={styles.menuLink}>
+              <a
+                className={styles.menuLink}
+                href={pathname === "/" ? undefined : "/"}
+                style={{ cursor: "pointer" }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (pathname === "/") {
+                    scrollToSection("top-selling-section");
+                  } else {
+                    router.push("/?scroll=top-selling-section");
+                  }
+                  setIsMenuOpen(false);
+                }}
+              >
                 On Sale
-              </Link>
+              </a>
             </li>
             <li>
-              <Link href="/new-arrivals" className={styles.menuLink}>
+              <a
+                className={styles.menuLink}
+                href={pathname === "/" ? undefined : "/"}
+                style={{ cursor: "pointer" }}
+                onClick={(e) => {
+                  e.preventDefault();
+                  if (pathname === "/") {
+                    scrollToSection("new-arrivals-section");
+                  } else {
+                    router.push("/?scroll=new-arrivals-section");
+                  }
+                  setIsMenuOpen(false);
+                }}
+              >
                 New Arrivals
-              </Link>
+              </a>
             </li>
             <li>
               <Link href="/brands" className={styles.menuLink}>
@@ -114,7 +184,7 @@ export default function Header() {
             />
           </div>
 
-          <Link href="/cart">
+          <Link href="/Cart">
             <Image
               src="/images/Cart.png"
               alt="Cart"

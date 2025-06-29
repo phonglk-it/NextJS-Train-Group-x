@@ -29,41 +29,44 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isMobile }) => {
   }, []);
 
   return (
-    <div
-      ref={ref}
-      className={`${styles.productCard} ${styles.animate} ${
-        visible ? styles.visible : ""
-      }`}
+    <Link
+      href={`/productdetail/${product.id}`}
+      style={{ textDecoration: "none", color: "inherit" }}
     >
-      <Link href={`/product/${product.id}`}>
+      <div
+        ref={ref}
+        className={`${styles.productCard} ${styles.animate} ${
+          visible ? styles.visible : ""
+        }`}
+      >
         <div className={styles.imageWrapper}>
           <img src={product.image} alt={product.name} />
         </div>
-      </Link>
-      <p className={styles.productName}>{product.name}</p>
-      <div className={styles.rating}>
-        {Array.from({ length: 5 }).map((_, i) => (
-          <span
-            key={i}
-            className={`${styles.star} ${
-              i < Math.floor(product.rating) ? styles.filled : ""
-            }`}
-          >
-            ★
-          </span>
-        ))}
-        <span className={styles.score}>{product.rating}/5</span>
+        <p className={styles.productName}>{product.name}</p>
+        <div className={styles.rating}>
+          {Array.from({ length: 5 }).map((_, i) => (
+            <span
+              key={i}
+              className={`${styles.star} ${
+                i < Math.floor(product.rating) ? styles.filled : ""
+              }`}
+            >
+              ★
+            </span>
+          ))}
+          <span className={styles.score}>{product.rating}/5</span>
+        </div>
+        <div className={styles.price}>
+          <span className={styles.current}>${product.price}</span>
+          {product.oldPrice && (
+            <span className={styles.oldGroup}>
+              <span className={styles.old}>${product.oldPrice}</span>
+              <span className={styles.discount}>{product.discount}</span>
+            </span>
+          )}
+        </div>
       </div>
-      <div className={styles.price}>
-        <span className={styles.current}>${product.price}</span>
-        {product.oldPrice && (
-          <span className={styles.oldGroup}>
-            <span className={styles.old}>${product.oldPrice}</span>
-            <span className={styles.discount}>{product.discount}</span>
-          </span>
-        )}
-      </div>
-    </div>
+    </Link>
   );
 };
 
