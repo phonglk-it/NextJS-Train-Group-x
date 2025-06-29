@@ -44,42 +44,59 @@ export default function FilterSidebar({ onClose }: { onClose?: () => void }) {
     Size: true,
     "Dress Style": true,
   });
-  const [collapsed, setCollapsed] = useState(false);
+  const [filterCollapsed, setFilterCollapsed] = useState(false);
 
   const toggleSection = (key: string) => {
     setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
   };
 
   return (
-    <aside className={collapsed ? styles.sidebarCollapsed : styles.sidebar}>
-      <div className={styles.header}>
-        <h4 className={styles.title}>Filters</h4>
-        <button
-          className={
-            collapsed ? styles.filterIconBtnActive : styles.filterIconBtn
-          }
-          aria-label="Filter icon"
-          onClick={() => setCollapsed((v) => !v)}
-        >
-          <Image
-            src={
-              collapsed
-                ? "/images/filters-responsive.png"
-                : "/images/filters-close.png"
-            }
-            alt="Filter"
-            width={22}
-            height={19}
-          />
-        </button>
-        {onClose && !collapsed && (
-          <button className={styles.closeBtn} onClick={onClose}>
-            <FaXmark />
+    <aside
+      className={
+        filterCollapsed
+          ? `${styles.sidebar} ${styles.collapsed}`
+          : styles.sidebar
+      }
+    >
+      {filterCollapsed ? (
+        <div className={styles.filterCollapsedWrapper}>
+          <button
+            className={styles.filterCircleBtn}
+            onClick={() => setFilterCollapsed(false)}
+            aria-label="Expand filter sidebar"
+          >
+            <Image
+              src="/images/filters-responsive.png"
+              alt="Filter"
+              width={32}
+              height={32}
+              style={{ objectFit: "contain" }}
+              unoptimized
+            />
           </button>
-        )}
-      </div>
-      {!collapsed && (
+        </div>
+      ) : (
         <>
+          <div className={styles.header}>
+            <h4 className={styles.title}>Filters</h4>
+            <button
+              className={styles.filterIconBtn}
+              aria-label="Filter icon"
+              onClick={() => setFilterCollapsed(true)}
+            >
+              <Image
+                src="/images/filters-close.png"
+                alt="Filter"
+                width={22}
+                height={19}
+              />
+            </button>
+            {onClose && (
+              <button className={styles.closeBtn} onClick={onClose}>
+                <FaXmark />
+              </button>
+            )}
+          </div>
           <div className={styles.divider} />
           {/* Categories */}
           <div className={styles.filterSection}>
@@ -134,15 +151,7 @@ export default function FilterSidebar({ onClose }: { onClose?: () => void }) {
                     onClick={() => setSelectedColor(color)}
                   >
                     {selectedColor === color && (
-                      <span
-                        className={styles.checkmark}
-                        style={{
-                          color:
-                            color.toLowerCase() === "white" ? "#000" : "#fff",
-                        }}
-                      >
-                        ✔
-                      </span>
+                      <span className={styles.checkmark}>✔</span>
                     )}
                   </div>
                 ))}
