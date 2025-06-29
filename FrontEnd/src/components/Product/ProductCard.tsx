@@ -1,7 +1,9 @@
 "use client";
+
 import React, { useEffect, useRef, useState } from "react";
 import { Product } from "../../types/Product";
 import styles from "../Style/productCard.module.css";
+import Link from "next/link";
 
 interface ProductCardProps {
   product: Product;
@@ -17,18 +19,15 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isMobile }) => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setVisible(true);
-          observer.disconnect(); // chỉ trigger 1 lần
+          observer.disconnect();
         }
       },
       { threshold: 0.2 }
     );
-
-    if (ref.current) {
-      observer.observe(ref.current);
-    }
-
+    if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, []);
+
   return (
     <div
       ref={ref}
@@ -36,9 +35,11 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isMobile }) => {
         visible ? styles.visible : ""
       }`}
     >
-      <div className={styles.imageWrapper}>
-        <img src={product.image} alt={product.name} />
-      </div>
+      <Link href={`/product/${product.id}`}>
+        <div className={styles.imageWrapper}>
+          <img src={product.image} alt={product.name} />
+        </div>
+      </Link>
       <p className={styles.productName}>{product.name}</p>
       <div className={styles.rating}>
         {Array.from({ length: 5 }).map((_, i) => (

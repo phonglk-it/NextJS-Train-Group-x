@@ -134,7 +134,15 @@ export default function FilterSidebar({ onClose }: { onClose?: () => void }) {
                     onClick={() => setSelectedColor(color)}
                   >
                     {selectedColor === color && (
-                      <span className={styles.checkmark}>✔</span>
+                      <span
+                        className={styles.checkmark}
+                        style={{
+                          color:
+                            color.toLowerCase() === "white" ? "#000" : "#fff",
+                        }}
+                      >
+                        ✔
+                      </span>
                     )}
                   </div>
                 ))}
