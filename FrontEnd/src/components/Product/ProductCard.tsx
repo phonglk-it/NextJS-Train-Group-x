@@ -1,5 +1,4 @@
 "use client";
-
 import React, { useEffect, useRef, useState } from "react";
 import { Product } from "../../types/Product";
 import styles from "../Style/productCard.module.css";
@@ -19,15 +18,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isMobile }) => {
       ([entry]) => {
         if (entry.isIntersecting) {
           setVisible(true);
-          observer.disconnect();
+          observer.disconnect(); // chỉ trigger 1 lần
         }
       },
       { threshold: 0.2 }
     );
-    if (ref.current) observer.observe(ref.current);
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
     return () => observer.disconnect();
   }, []);
-
   return (
     <Link
       href={`/productdetail/${product.id}`}

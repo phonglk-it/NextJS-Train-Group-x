@@ -40,13 +40,6 @@ export default function CasualPage() {
   return (
     <div>
       <Header />
-      <div className={styles.breadcrumb}>
-        <a href="/" className={styles.breadcrumbLink}>
-          Home
-        </a>
-        <span className={styles.breadcrumbSeparator}>&nbsp;&gt;&nbsp;</span>
-        <span className={styles.breadcrumbCurrent}>Casual</span>
-      </div>
       <div className={styles.container}>
         <aside className={styles.sidebar}>
           <ResponsiveFilterSidebar

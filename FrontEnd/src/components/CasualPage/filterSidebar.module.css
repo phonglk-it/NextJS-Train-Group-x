@@ -108,23 +108,18 @@
 }
 
 .applyBtnRounded {
+  position: sticky;
   bottom: 20px;
   background-color: black;
   color: white;
   border: none;
-  border-radius: 64px;
-  padding: 16px 54px;
-  font-size: 14px;
+  border-radius: 100px;
+  padding: 14px 0;
+  font-size: 15px;
   font-weight: bold;
   text-align: center;
   width: 100%;
-  cursor: pointer;
-  transition: background-color 0.2s ease, transform 0.1s ease;
-}
-
-.applyBtnRounded:hover {
-  background-color: #333;
-  transform: translateY(-1px);
+  margin-top: 32px;
 }
 
 .sliderWrapper {
@@ -142,7 +137,7 @@
 
 .divider {
   width: 100%;
-  margin-bottom: 24px;
+  margin: 12px 0;
   border: 1px solid #0000001A;
 }
 /* #category */
