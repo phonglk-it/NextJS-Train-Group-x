@@ -5,6 +5,8 @@ import styles from "./homepage.module.css";
 import ProductSection from "@/components/Product/ProductSection";
 import { newArrivals, topSelling } from "@/data/products-data";
 import { useSearchParams } from "next/navigation";
+import Customers from "@/components/Customers/customers";
+import Style from "@/components/Style/style";
 
 interface CounterProps {
   target: string;
@@ -167,6 +169,8 @@ export default function Home() {
         products={topSelling}
         id="top-selling-section"
       />
+      <Style />
+      <Customers />
     </div>
   );
 }

@@ -4,15 +4,25 @@ import { useState } from "react";
 import Link from "next/link";
 import styles from "./header.module.css";
 import { useRouter, usePathname } from "next/navigation";
+import LoginModal from "@/components/login/login";
+import RegisterModal from "../register/register";
+
 
 export default function Header() {
   const [showAnnouncement, setShowAnnouncement] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [showMegaMenu, setShowMegaMenu] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showRegisterModal, setShowRegisterModal] = useState(false);
 
   const router = useRouter();
   const pathname = usePathname();
+  
+  const switchToRegister = () => {
+    setShowLoginModal(false);
+    setShowRegisterModal(true);
+  };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -32,6 +42,19 @@ export default function Header() {
 
   return (
     <>
+      <LoginModal
+        isOpen={showLoginModal}
+        onClose={() => setShowLoginModal(false)}
+        switchToRegister={() => {
+          setShowLoginModal(false);
+          setShowRegisterModal(true);
+        }}
+      />
+
+      <RegisterModal
+        isOpen={showRegisterModal}
+        onClose={() => setShowRegisterModal(false)}
+      />
       {showAnnouncement && (
         <div className={styles.announcementBar}>
           <span>
@@ -193,15 +216,15 @@ export default function Header() {
               className={styles.icon}
             />
           </Link>
-          <Link href="/login">
-            <Image
-              src="/images/User.png"
-              alt="User"
-              width={24}
-              height={24}
-              className={styles.icon}
-            />
-          </Link>
+          <Image
+            src="/images/User.png"
+            alt="User"
+            width={24}
+            height={24}
+            className={styles.icon}
+            onClick={() => setShowLoginModal(true)}
+            style={{ cursor: "pointer" }}
+          />
         </div>
       </nav>
     </>
