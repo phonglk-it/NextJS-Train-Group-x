@@ -25,7 +25,7 @@ from django.urls import path, include
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('product/', include('products.urls')),
-    path('api/', include('category.urls')),
+    path('categories/', include('category.urls')),
     
     path('schema/', spectacular_views.SpectacularAPIView.as_view(), name="schema"),
     path('swagger/', spectacular_views.SpectacularSwaggerView.as_view(url_name="schema"), name="swagger-ui"),
