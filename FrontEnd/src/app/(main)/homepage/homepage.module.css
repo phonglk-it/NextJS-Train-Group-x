@@ -10,7 +10,7 @@
 
 .heroSection {
   background: #f2f0f1;
-  padding: 80px 0 80px 80px;
+  padding: 40px 0 80px 80px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -114,11 +114,11 @@
 .heroImageContainer {
   position: relative;
   right: 135px;
-  bottom: -100px;
+  bottom: -174px;
   width: 50vw;
   height: 80vw;
   max-width: 600px;
-  max-height: 900px;
+  max-height: 1100px;
   display: flex;
   justify-content: center;
   align-items: flex-end;
@@ -156,7 +156,7 @@
 
 .blingBottomLeft {
   position: absolute;
-  bottom: 410px;
+  bottom: 400px;
   left: 700px;
   width: 56px;
   height: 56px;
@@ -182,7 +182,6 @@
   max-width: 150px;
 }
 
-/* Responsive styles */
 @media (max-width: 1200px) {
   .homepageContainer {
     max-width: 100%;
@@ -255,26 +254,26 @@
 
   .heroImageContainer {
     position: relative;
-    right: auto;
-    bottom: auto;
-    width: 80%;
-    height: 400px;
-    max-width: 100%;
-    max-height: 400px;
-    margin-top: 40px;
+    right: 40px;
+    bottom: -61px;
+    width: 70%;
+    height: 439px;
+    max-width: 109%;
+    max-height: 428px;
+    margin-top: -84px;
     overflow: hidden;
   }
 
   .blingTopRight {
-    top: 20px;
-    right: 20px;
+    top: 750px;
+    right: 207px;
     width: 80px;
     height: 80px;
   }
 
   .blingBottomLeft {
-    bottom: 20px;
-    left: 20px;
+    bottom: 267px;
+    left: 142px;
     width: 40px;
     height: 40px;
   }
@@ -333,15 +332,15 @@
   }
 
   .blingTopRight {
-    top: 850px;
+    top: 670px;
     right: 150px;
-    width: 60px;
-    height: 60px;
+    width: 30px;
+    height: 30px;
   }
 
   .blingBottomLeft {
-    bottom: 430px;
-    left: 160px;
+    bottom: 180px;
+    left: 110px;
     width: 30px;
     height: 30px;
   }
@@ -405,22 +404,23 @@
   }
 
   .heroImageContainer {
-    height: 180px;
-    max-height: 180px;
+    height: 261px;
+    max-height: 274px;
+    width: 80%;
   }
 
   .blingTopRight {
-    width: 50px;
-    height: 50px;
-    top: 20px;
-    right: 20px;
+    width: 40px;
+    height: 40px;
+    top: 600px;
+    right: 100px;
   }
 
   .blingBottomLeft {
-    width: 25px;
-    height: 25px;
-    bottom: 20px;
-    left: 20px;
+    width: 10px;
+    height: 10px;
+    bottom: 111px;
+    left: 36px;
   }
 
   .brandBar {
