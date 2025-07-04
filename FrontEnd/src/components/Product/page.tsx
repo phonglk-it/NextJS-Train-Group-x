@@ -67,12 +67,12 @@ export default function ProductDetailPage({
 }: {
   params: { id: string };
 }) {
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(true); 
   const [quantity, setQuantity] = useState(1);
   const [isInWishlist, setIsInWishlist] = useState(false);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
 
-  const product = casual.find((item) => item.id === params.id);
+  const product = casual.find((item) => String(item.id) === params.id);
 
   useEffect(() => {
     // Simulate loading time
@@ -191,13 +191,9 @@ export default function ProductDetailPage({
                   </button>
                 </div>
               </div>
-
-
             </div>
           </div>
         </div>
-
-        
       </div>
 
       {/* Related Products */}
