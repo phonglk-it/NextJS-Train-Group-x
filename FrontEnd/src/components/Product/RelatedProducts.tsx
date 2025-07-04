@@ -6,7 +6,7 @@ import Link from "next/link";
 import styles from "./RelatedProducts.module.css";
 
 interface RelatedProductsProps {
-  currentProductId: string;
+  currentProductId: number;
   limit?: number;
 }
 

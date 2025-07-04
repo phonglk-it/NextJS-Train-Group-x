@@ -192,46 +192,12 @@ export default function ProductDetailPage({
                 </div>
               </div>
 
-              {/* Add to Cart Button */}
-              <button
-                className={styles.addToCartButton}
-                onClick={handleAddToCart}
-                disabled={isAddingToCart}
-              >
-                {isAddingToCart ? "Adding..." : "Add to Cart"}
-              </button>
 
-              {/* Wishlist Button */}
-              <button
-                className={styles.wishlistButton}
-                onClick={handleWishlistToggle}
-              >
-                {isInWishlist
-                  ? "❤️ Remove from Wishlist"
-                  : "🤍 Add to Wishlist"}
-              </button>
             </div>
           </div>
         </div>
 
-        {/* Product Description */}
-        <div className={styles.descriptionSection}>
-          <h2 className={styles.descriptionTitle}>Product Description</h2>
-          <p className={styles.descriptionText}>
-            Experience the perfect blend of style and comfort with our premium{" "}
-            {product.name.toLowerCase()}. Crafted with attention to detail and
-            made from high-quality materials, this piece is designed to elevate
-            your everyday wardrobe. Whether you're heading to a casual meetup or
-            a semi-formal event, this versatile item will ensure you look your
-            best while feeling comfortable throughout the day.
-          </p>
-          <p className={styles.descriptionText}>
-            Features include breathable fabric, durable construction, and a
-            modern fit that flatters various body types. The design incorporates
-            contemporary trends while maintaining timeless appeal, making it a
-            valuable addition to any fashion-conscious individual's collection.
-          </p>
-        </div>
+        
       </div>
 
       {/* Related Products */}
