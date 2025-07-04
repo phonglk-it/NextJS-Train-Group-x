@@ -3,7 +3,7 @@ import { Product } from "@/types/Product";
 export const newArrivals: Product[] = [
   {
     id: 1,
-    name: "T-SHIRT WITH TAPE DETAILS",
+    name: "T-shirt with Tape Details",
     price: 120,
     rating: 4.5,
     image: "/images/tshirt-1.png",
@@ -26,7 +26,7 @@ export const newArrivals: Product[] = [
   },
   {
     id: 4,
-    name: "SLEEVE STRIPED T-SHIRT",
+    name: "Sleeve Striped t-shirt",
     price: 130,
     oldPrice: 160,
     discount: "-30%",
@@ -47,7 +47,7 @@ export const topSelling: Product[] = [
   },
   {
     id: 6,
-    name: "COURAGE GRAPHIC T-SHIRT",
+    name: "Courage Graphic T-shirt",
     price: 145,
     rating: 4.0,
     image: "/images/tshirt-3.png",

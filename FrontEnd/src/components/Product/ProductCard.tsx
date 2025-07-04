@@ -30,7 +30,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product, isMobile }) => {
 
   return (
     <Link
-      href={`/productdetail/${product.id}`}
+      href={`/product/${product.id}`}
       style={{ textDecoration: "none", color: "inherit" }}
     >
       <div

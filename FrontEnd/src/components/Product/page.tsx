@@ -62,11 +62,7 @@ const ProductSkeleton = () => (
   </div>
 );
 
-export default function ProductDetailPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+export default function ProductPage({ params }: { params: { id: string } }) {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [isInWishlist, setIsInWishlist] = useState(false);
@@ -191,13 +187,9 @@ export default function ProductDetailPage({
                   </button>
                 </div>
               </div>
-
-
             </div>
           </div>
         </div>
-
-        
       </div>
 
       {/* Related Products */}
