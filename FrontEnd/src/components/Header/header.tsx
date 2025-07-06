@@ -7,7 +7,6 @@ import { useRouter, usePathname } from "next/navigation";
 import LoginModal from "@/components/login/login";
 import RegisterModal from "../register/register";
 
-
 export default function Header() {
   const [showAnnouncement, setShowAnnouncement] = useState(true);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -18,7 +17,7 @@ export default function Header() {
 
   const router = useRouter();
   const pathname = usePathname();
-  
+
   const switchToRegister = () => {
     setShowLoginModal(false);
     setShowRegisterModal(true);
@@ -135,40 +134,56 @@ export default function Header() {
               )}
             </li>
             <li>
-              <a
-                className={styles.menuLink}
-                href={pathname === "/" ? undefined : "/"}
-                style={{ cursor: "pointer" }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (pathname === "/") {
+              {pathname === "/" ? (
+                <a
+                  className={styles.menuLink}
+                  href="#top-selling-section"
+                  onClick={() => {
                     scrollToSection("top-selling-section");
-                  } else {
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  On Sale
+                </a>
+              ) : (
+                <a
+                  className={styles.menuLink}
+                  href="/?scroll=top-selling-section"
+                  onClick={(e) => {
+                    e.preventDefault();
                     router.push("/?scroll=top-selling-section");
-                  }
-                  setIsMenuOpen(false);
-                }}
-              >
-                On Sale
-              </a>
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  On Sale
+                </a>
+              )}
             </li>
             <li>
-              <a
-                className={styles.menuLink}
-                href={pathname === "/" ? undefined : "/"}
-                style={{ cursor: "pointer" }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (pathname === "/") {
+              {pathname === "/" ? (
+                <a
+                  className={styles.menuLink}
+                  href="#new-arrivals-section"
+                  onClick={() => {
                     scrollToSection("new-arrivals-section");
-                  } else {
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  New Arrivals
+                </a>
+              ) : (
+                <a
+                  className={styles.menuLink}
+                  href="/?scroll=new-arrivals-section"
+                  onClick={(e) => {
+                    e.preventDefault();
                     router.push("/?scroll=new-arrivals-section");
-                  }
-                  setIsMenuOpen(false);
-                }}
-              >
-                New Arrivals
-              </a>
+                    setIsMenuOpen(false);
+                  }}
+                >
+                  New Arrivals
+                </a>
+              )}
             </li>
             <li>
               <Link href="/brands" className={styles.menuLink}>
