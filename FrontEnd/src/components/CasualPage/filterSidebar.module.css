@@ -78,6 +78,14 @@
   border: 2px solid black;
 }
 
+.selectedWhite {
+  border: 2px solid #000;
+}
+
+.selectedWhite .checkmark {
+  color: #000;
+}
+
 .checkmark {
   color: white;
   font-size: 16px;
@@ -389,4 +397,14 @@
   .filterIconDesktop {
     display: none;
   }
+}
+
+.categoryItemSelected {
+  background-color: black;
+  color: white;
+}
+
+.dressStyleSelected {
+  background-color: black;
+  color: white;
 }

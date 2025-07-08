@@ -34,7 +34,11 @@ const sizes = [
 ];
 const dressStyles = ["Casual", "Formal", "Party", "Gym"];
 
-export default function FilterSidebar({ onClose }: { onClose?: () => void }) {
+export default function FilterSidebar({
+  onFilterChange,
+}: {
+  onFilterChange?: (data: any) => void;
+}) {
   const [selectedColor, setSelectedColor] = useState<string | null>(null);
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [priceRange, setPriceRange] = useState<[number, number]>([50, 200]);
@@ -45,9 +49,30 @@ export default function FilterSidebar({ onClose }: { onClose?: () => void }) {
     "Dress Style": true,
   });
   const [filterCollapsed, setFilterCollapsed] = useState(false);
+  const [selectedDressStyle, setSelectedDressStyle] = useState<string | null>(
+    null
+  );
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const toggleSection = (key: string) => {
     setExpanded((prev) => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const handleApplyFilter = () => {
+    // Tạo query params từ các filter đã chọn
+    const params = new URLSearchParams();
+    params.append("price_min", priceRange[0].toString());
+    params.append("price_max", priceRange[1].toString());
+    if (selectedColor) params.append("color", selectedColor);
+    if (selectedSize) params.append("size", selectedSize);
+    if (selectedDressStyle) params.append("dress_style", selectedDressStyle);
+    if (selectedCategory) params.append("category", selectedCategory);
+
+    fetch(`/api/products?${params.toString()}`)
+      .then((res) => res.json())
+      .then((data) => {
+        onFilterChange && onFilterChange(data);
+      });
   };
 
   return (
@@ -91,18 +116,20 @@ export default function FilterSidebar({ onClose }: { onClose?: () => void }) {
                 height={19}
               />
             </button>
-            {onClose && (
-              <button className={styles.closeBtn} onClick={onClose}>
-                <FaXmark />
-              </button>
-            )}
           </div>
           <div className={styles.divider} />
           {/* Categories */}
           <div className={styles.filterSection}>
             <ul className={styles.categoryList}>
               {categories.map((cat) => (
-                <li key={cat} className={styles.categoryItem}>
+                <li
+                  key={cat}
+                  className={`${styles.categoryItem} ${
+                    selectedCategory === cat ? styles.categoryItemSelected : ""
+                  }`}
+                  onClick={() => setSelectedCategory(cat)}
+                  style={{ cursor: "pointer" }}
+                >
                   <span>{cat}</span>
                   <span className={styles.arrow}>&#8250;</span>
                 </li>
@@ -145,7 +172,11 @@ export default function FilterSidebar({ onClose }: { onClose?: () => void }) {
                   <div
                     key={color}
                     className={`${styles.colorDot} ${
-                      selectedColor === color ? styles.selected : ""
+                      selectedColor === color
+                        ? color === "white"
+                          ? styles.selectedWhite
+                          : styles.selected
+                        : ""
                     }`}
                     style={{ backgroundColor: color }}
                     onClick={() => setSelectedColor(color)}
@@ -185,7 +216,16 @@ export default function FilterSidebar({ onClose }: { onClose?: () => void }) {
             {expanded["Dress Style"] && (
               <ul className={styles.categoryList}>
                 {dressStyles.map((style) => (
-                  <li key={style} className={styles.categoryItem}>
+                  <li
+                    key={style}
+                    className={`${styles.categoryItem} ${
+                      selectedDressStyle === style
+                        ? styles.dressStyleSelected
+                        : ""
+                    }`}
+                    onClick={() => setSelectedDressStyle(style)}
+                    style={{ cursor: "pointer" }}
+                  >
                     <span>{style}</span>
                     <FaChevronRight className={styles.arrow} />
                   </li>
@@ -193,7 +233,12 @@ export default function FilterSidebar({ onClose }: { onClose?: () => void }) {
               </ul>
             )}
           </div>
-          <button className={styles.applyBtnRounded}>Apply Filter</button>
+          <button
+            className={styles.applyBtnRounded}
+            onClick={handleApplyFilter}
+          >
+            Apply Filter
+          </button>
         </>
       )}
     </aside>
