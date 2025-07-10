@@ -21,7 +21,12 @@ class CartItem(models.Model):
     
 
 class CustomUser(AbstractUser):
+    email = models.EmailField(unique=True)
+    username = models.CharField(max_length=150, blank=True, null=True)
     phone = models.CharField(max_length=20, blank=True, null=True)
 
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = []
+
     def __str__(self):
-        return self.username
+        return self.email

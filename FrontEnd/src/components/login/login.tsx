@@ -4,6 +4,8 @@ import styles from './login.module.css';
 import clsx from 'clsx';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
+import { useAuth } from '@/contexts/AuthContext';
+import { useNotification } from '@/contexts/NotificationContext';
 
 type LoginModalProps = {
   isOpen: boolean;
@@ -15,34 +17,48 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, switchToRegist
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const { login } = useAuth();
+  const { showNotification } = useNotification();
 
   if (!isOpen) return null;
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
 
+    if (!email || !password) {
+      showNotification('error', 'Please enter both email and password');
+      return;
+    }
+
+    setIsLoading(true);
     try {
-      const response = await fetch('http://localhost:8000/api/token/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-
-      const data = await response.json();
-
-      if (response.ok) {
-        localStorage.setItem('access_token', data.access);
-        localStorage.setItem('refresh_token', data.refresh);
-        alert('Login successful!');
-        onClose(); // đóng modal
-      } else {
-        alert('Login failed: ' + (data.detail || 'Unknown error'));
+      await login(email, password);
+      showNotification('success', 'Login successful! Welcome back!');
+      onClose();
+      // Clear form
+      setEmail('');
+      setPassword('');
+    } catch (error: any) {
+      // Handle different types of login errors
+      let errorMessage = 'Login failed. Please try again.';
+      
+      if (error.message) {
+        if (error.message.includes('Invalid credentials') || 
+            error.message.includes('Invalid email or password')) {
+          errorMessage = 'Incorrect email or password. Please try again.';
+        } else if (error.message.includes('User not found')) {
+          errorMessage = 'No account found with this email address.';
+        } else if (error.message.includes('network') || error.message.includes('fetch')) {
+          errorMessage = 'Network error. Please check your connection and try again.';
+        } else {
+          errorMessage = error.message;
+        }
       }
-    } catch (error) {
-      console.error('Login error:', error);
-      alert('Login error');
+      
+      showNotification('error', errorMessage);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -68,6 +84,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, switchToRegist
                     className={styles.ipEmail}
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    disabled={isLoading}
                   />
                   <FontAwesomeIcon icon={faUser} className={styles.iconEmail} />
                 </div>
@@ -80,6 +97,7 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, switchToRegist
                     className={styles.ipPassword}
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    disabled={isLoading}
                   />
                   <FontAwesomeIcon
                     icon={showPassword ? faEyeSlash : faEye}
@@ -96,8 +114,8 @@ const LoginModal: React.FC<LoginModalProps> = ({ isOpen, onClose, switchToRegist
                     <p className={styles.textForgot}>Forgot password?</p>
                   </div>
                 </div>
-                <button type="submit" className={styles.btnLogin}>
-                  Sign In
+                <button type="submit" className={styles.btnLogin} disabled={isLoading}>
+                  {isLoading ? 'Signing In...' : 'Sign In'}
                 </button>
               </form>
               <p className={styles.continue}>Or continue with</p>
