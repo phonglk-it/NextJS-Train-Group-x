@@ -9,9 +9,11 @@ import Image from "next/image";
 export default function ResponsiveFilterSidebar({
   isOpen,
   onClose,
+  onFilterChange, // thêm dòng này
 }: {
   isOpen: boolean;
   onClose: () => void;
+  onFilterChange?: (data: any) => void; // thêm dòng này
 }) {
   return (
     <>
@@ -19,7 +21,7 @@ export default function ResponsiveFilterSidebar({
       {isOpen && <div className={styles.overlay} onClick={onClose} />}
       {/* Sidebar Slide In */}
       <div className={`${styles.sidebarWrapper} ${isOpen ? styles.open : ""}`}>
-        <FilterSidebar onClose={onClose} />
+        <FilterSidebar onFilterChange={onFilterChange} /> {/* sửa dòng này */}
       </div>
     </>
   );

@@ -1,12 +1,17 @@
-from django.shortcuts import render
-
 from rest_framework import viewsets
 from .models import Category
 from .serializer import CategorySerializer
 
-# Create your views here.
 class CategoryViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows categories to be viewed or edited.
+    """
+    queryset = Category.objects.all() # type: ignore
     serializer_class = CategorySerializer
 
     def get_queryset(self):
-        return Category.objects.all()
+        queryset = super().get_queryset()
+        name = self.request.query_params.get('name')
+        if name:
+            queryset = queryset.filter(name__icontains=name)
+        return queryset

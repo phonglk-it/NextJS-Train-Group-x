@@ -43,7 +43,11 @@ export default function CasualPage() {
 
   return (
     <div className={styles.pageContainer}>
-      <ResponsiveFilterSidebar isOpen={true} onClose={() => {}} />
+      <ResponsiveFilterSidebar
+        isOpen={true}
+        onClose={() => {}}
+        onFilterChange={setProducts}
+      />
       <div className={styles.mainContent}>
         <SortDropdown onSortChange={handleSortChange} />
         <div className={styles.productGrid}>

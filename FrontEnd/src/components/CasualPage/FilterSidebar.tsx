@@ -21,6 +21,8 @@ const colors = [
   "white",
   "black",
 ];
+const PRICE_MIN = 0;
+const PRICE_MAX = 1000;
 const sizes = [
   "XX-Small",
   "SX-Small",
@@ -61,8 +63,8 @@ export default function FilterSidebar({
   const handleApplyFilter = () => {
     // Tạo query params từ các filter đã chọn
     const params = new URLSearchParams();
-    params.append("price_min", priceRange[0].toString());
-    params.append("price_max", priceRange[1].toString());
+    params.append("min_price", priceRange[0].toString());
+    params.append("max_price", priceRange[1].toString());
     if (selectedColor) params.append("color", selectedColor);
     if (selectedSize) params.append("size", selectedSize);
     if (selectedDressStyle) params.append("dress_style", selectedDressStyle);
@@ -144,8 +146,8 @@ export default function FilterSidebar({
               <div className={styles.sliderWrapper}>
                 <Slider
                   range
-                  min={1}
-                  max={1000}
+                  min={PRICE_MIN}
+                  max={PRICE_MAX}
                   step={1}
                   value={priceRange}
                   onChange={(value) => setPriceRange(value as [number, number])}
