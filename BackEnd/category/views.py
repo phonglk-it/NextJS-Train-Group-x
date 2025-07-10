@@ -6,5 +6,7 @@ from .serializer import CategorySerializer
 
 # Create your views here.
 class CategoryViewSet(viewsets.ModelViewSet):
-    queryset = Category.objects.all()
     serializer_class = CategorySerializer
+
+    def get_queryset(self):
+        return Category.objects.all()
