@@ -4,7 +4,7 @@ import ProductCard from "@/components/Product/ProductCard";
 import styles from "./casualPage.module.css";
 import { casual } from "@/data/products-data";
 
-import ResponsiveFilterSidebar from "@/components/CasualPage/ResponsiveFilterSidebar";
+import FilterSidebar from "@/components/CasualPage/FilterSidebar";
 import SortDropdown from "@/components/CasualPage/SortDropdown";
 import Pagination from "@/components/CasualPage/Pagination";
 import Header from "@/components/Header/header";
@@ -38,6 +38,11 @@ export default function CasualPage() {
     });
   }
 
+  // Hàm cập nhật sản phẩm khi filter thay đổi
+  function handleFilterChange(filteredProducts: any[]) {
+    setProducts(filteredProducts);
+  }
+
   return (
     <div>
       <Header />
@@ -50,10 +55,7 @@ export default function CasualPage() {
       </div>
       <div className={styles.container}>
         <aside className={styles.sidebar}>
-          <ResponsiveFilterSidebar
-            isOpen={sidebarOpen}
-            onClose={closeSidebar}
-          />
+          <FilterSidebar onFilterChange={handleFilterChange} />
         </aside>
         <main className={styles.content}>
           <div className={styles.header}>

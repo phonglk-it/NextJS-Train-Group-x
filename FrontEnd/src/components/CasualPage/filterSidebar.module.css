@@ -188,7 +188,7 @@
 }
 
 .sidebar {
-  max-width: 240px;
+  width: 320px;
   padding: 20px;
   border-radius: 20px;
   border: 1px solid #0000001A;
@@ -204,6 +204,15 @@
   display: none;
   color: #333;
   margin-left: auto;
+}
+
+@media (max-width: 900px) {
+  .sidebar {
+    width: 100vw;
+    max-width: 100vw;
+    min-width: 0;
+    padding: 12px 8px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -407,4 +416,71 @@
 .dressStyleSelected {
   background-color: black;
   color: white;
+}
+
+.filterCircleBtn {
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #eee;
+  box-shadow: 0 2px 8px 0 #0001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: box-shadow 0.2s, border 0.2s;
+  cursor: pointer;
+  padding: 0;
+  margin: 0 auto;
+}
+
+.filterCircleBtn svg {
+  width: 16px;
+  height: 16px;
+}
+
+.filterCircleBtn:hover {
+  box-shadow: 0 4px 12px 0 #0002;
+  border: 1.5px solid #ddd;
+}
+
+@media (max-width: 600px) {
+  .filterCircleBtn {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    margin: 4px auto; /* Thêm margin nhỏ cho dễ bấm */
+    box-shadow: 0 1px 4px 0 #0002;
+  }
+  .filterCircleBtn svg {
+    width: 13px;
+    height: 13px;
+  }
+}
+
+.sidebar.collapsed {
+  width: 50px !important;
+  min-width: 50px !important;
+  max-width: 50px !important;
+  height: 50px !important;
+  min-height: 50px !important;
+  max-height: 50px !important;
+  padding: 0 !important;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px 0 #0001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  transition: width 0.2s, height 0.2s, box-shadow 0.2s;
+  overflow: hidden;
+}
+
+.filterCollapsedWrapper {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
 }

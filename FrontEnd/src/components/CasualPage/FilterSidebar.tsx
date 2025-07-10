@@ -7,6 +7,8 @@ import "rc-slider/assets/index.css";
 import { FaChevronRight } from "react-icons/fa";
 import { FaXmark } from "react-icons/fa6";
 import Image from "next/image";
+import { casual } from "@/data/products-data";
+import { FaSlidersH } from "react-icons/fa";
 
 const categories = ["T-shirts", "Shorts", "Shirts", "Hoodie", "Jeans"];
 const colors = [
@@ -61,20 +63,12 @@ export default function FilterSidebar({
   };
 
   const handleApplyFilter = () => {
-    // Tạo query params từ các filter đã chọn
-    const params = new URLSearchParams();
-    params.append("min_price", priceRange[0].toString());
-    params.append("max_price", priceRange[1].toString());
-    if (selectedColor) params.append("color", selectedColor);
-    if (selectedSize) params.append("size", selectedSize);
-    if (selectedDressStyle) params.append("dress_style", selectedDressStyle);
-    if (selectedCategory) params.append("category", selectedCategory);
-
-    fetch(`http://localhost:8000/api/products?${params.toString()}`)
-      .then((res) => res.json())
-      .then((data) => {
-        onFilterChange && onFilterChange(data);
-      });
+    let filtered = casual.filter((product) => {
+      if (product.price < priceRange[0] || product.price > priceRange[1])
+        return false;
+      return true;
+    });
+    onFilterChange && onFilterChange(filtered);
   };
 
   return (
@@ -92,14 +86,7 @@ export default function FilterSidebar({
             onClick={() => setFilterCollapsed(false)}
             aria-label="Expand filter sidebar"
           >
-            <Image
-              src="/images/filters-responsive.png"
-              alt="Filter"
-              width={32}
-              height={32}
-              style={{ objectFit: "contain" }}
-              unoptimized
-            />
+            <FaSlidersH size={32} />
           </button>
         </div>
       ) : (
@@ -129,7 +116,9 @@ export default function FilterSidebar({
                   className={`${styles.categoryItem} ${
                     selectedCategory === cat ? styles.categoryItemSelected : ""
                   }`}
-                  onClick={() => setSelectedCategory(cat)}
+                  onClick={() =>
+                    setSelectedCategory(selectedCategory === cat ? null : cat)
+                  }
                   style={{ cursor: "pointer" }}
                 >
                   <span>{cat}</span>
@@ -181,7 +170,9 @@ export default function FilterSidebar({
                         : ""
                     }`}
                     style={{ backgroundColor: color }}
-                    onClick={() => setSelectedColor(color)}
+                    onClick={() =>
+                      setSelectedColor(selectedColor === color ? null : color)
+                    }
                   >
                     {selectedColor === color && (
                       <span className={styles.checkmark}>✔</span>
@@ -203,7 +194,9 @@ export default function FilterSidebar({
                     className={`${styles.sizeBtn} ${
                       selectedSize === size ? styles.sizeBtnSelected : ""
                     }`}
-                    onClick={() => setSelectedSize(size)}
+                    onClick={() =>
+                      setSelectedSize(selectedSize === size ? null : size)
+                    }
                   >
                     {size}
                   </button>
@@ -225,7 +218,11 @@ export default function FilterSidebar({
                         ? styles.dressStyleSelected
                         : ""
                     }`}
-                    onClick={() => setSelectedDressStyle(style)}
+                    onClick={() =>
+                      setSelectedDressStyle(
+                        selectedDressStyle === style ? null : style
+                      )
+                    }
                     style={{ cursor: "pointer" }}
                   >
                     <span>{style}</span>
