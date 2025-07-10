@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import styles from "./sortDropdown.module.css";
+import styles from "./SortDropdown.module.css";
 import { FaChevronDown, FaSlidersH } from "react-icons/fa";
 
 const SORT_OPTIONS = [

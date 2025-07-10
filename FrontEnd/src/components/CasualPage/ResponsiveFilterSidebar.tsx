@@ -1,19 +1,17 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import FilterSidebar from "./FilterSidebar";
-import styles from "./responsiveFilterSidebar.module.css";
-import { FaSlidersH } from "react-icons/fa";
-import Image from "next/image";
+import styles from "./ResponsiveFilterSidebar.module.css";
 
 export default function ResponsiveFilterSidebar({
   isOpen,
   onClose,
-  onFilterChange, // thêm dòng này
+  onFilterChange, 
 }: {
   isOpen: boolean;
   onClose: () => void;
-  onFilterChange?: (data: any) => void; // thêm dòng này
+  onFilterChange?: (data: any) => void;
 }) {
   return (
     <>
@@ -21,7 +19,7 @@ export default function ResponsiveFilterSidebar({
       {isOpen && <div className={styles.overlay} onClick={onClose} />}
       {/* Sidebar Slide In */}
       <div className={`${styles.sidebarWrapper} ${isOpen ? styles.open : ""}`}>
-        <FilterSidebar onFilterChange={onFilterChange} /> {/* sửa dòng này */}
+        <FilterSidebar onFilterChange={onFilterChange} />
       </div>
     </>
   );

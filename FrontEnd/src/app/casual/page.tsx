@@ -9,6 +9,7 @@ import SortDropdown from "@/components/CasualPage/SortDropdown";
 import Pagination from "@/components/CasualPage/Pagination";
 import Header from "@/components/Header/header";
 import Footer from "@/components/Footer/footer";
+import Link from "next/link";
 
 export default function CasualPage() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -41,9 +42,9 @@ export default function CasualPage() {
     <div>
       <Header />
       <div className={styles.breadcrumb}>
-        <a href="/" className={styles.breadcrumbLink}>
+        <Link href="/" className={styles.breadcrumbLink}>
           Home
-        </a>
+        </Link>
         <span className={styles.breadcrumbSeparator}>&nbsp;&gt;&nbsp;</span>
         <span className={styles.breadcrumbCurrent}>Casual</span>
       </div>

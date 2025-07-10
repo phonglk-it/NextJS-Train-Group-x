@@ -70,7 +70,7 @@ export default function FilterSidebar({
     if (selectedDressStyle) params.append("dress_style", selectedDressStyle);
     if (selectedCategory) params.append("category", selectedCategory);
 
-    fetch(`/api/products?${params.toString()}`)
+    fetch(`http://localhost:8000/api/products?${params.toString()}`)
       .then((res) => res.json())
       .then((data) => {
         onFilterChange && onFilterChange(data);

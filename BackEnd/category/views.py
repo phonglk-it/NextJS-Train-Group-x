@@ -6,11 +6,10 @@ class CategoryViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows categories to be viewed or edited.
     """
-    queryset = Category.objects.all() # type: ignore
     serializer_class = CategorySerializer
 
     def get_queryset(self):
-        queryset = super().get_queryset()
+        queryset = Category.objects.all() # type: ignore
         name = self.request.query_params.get('name')
         if name:
             queryset = queryset.filter(name__icontains=name)
