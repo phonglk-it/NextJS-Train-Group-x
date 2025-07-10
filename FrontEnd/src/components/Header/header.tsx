@@ -1,11 +1,12 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import styles from "./header.module.css";
 import { useRouter, usePathname } from "next/navigation";
 import LoginModal from "@/components/login/login";
 import RegisterModal from "../register/register";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function Header() {
   const [showAnnouncement, setShowAnnouncement] = useState(true);
@@ -14,13 +15,38 @@ export default function Header() {
   const [showMegaMenu, setShowMegaMenu] = useState(false);
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   const router = useRouter();
   const pathname = usePathname();
+  const { user, isAuthenticated, logout } = useAuth();
+  const userMenuRef = useRef<HTMLDivElement>(null);
+
+  // Close user menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
+        setShowUserMenu(false);
+      }
+    };
+
+    if (showUserMenu) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [showUserMenu]);
 
   const switchToRegister = () => {
     setShowLoginModal(false);
     setShowRegisterModal(true);
+  };
+
+  const switchToLogin = () => {
+    setShowRegisterModal(false);
+    setShowLoginModal(true);
   };
 
   const toggleMenu = () => {
@@ -29,6 +55,15 @@ export default function Header() {
 
   const toggleSearch = () => {
     setIsSearchOpen(!isSearchOpen);
+  };
+
+  const toggleUserMenu = () => {
+    setShowUserMenu(!showUserMenu);
+  };
+
+  const handleLogout = () => {
+    logout();
+    setShowUserMenu(false);
   };
 
   // Scroll to section helper
@@ -44,15 +79,13 @@ export default function Header() {
       <LoginModal
         isOpen={showLoginModal}
         onClose={() => setShowLoginModal(false)}
-        switchToRegister={() => {
-          setShowLoginModal(false);
-          setShowRegisterModal(true);
-        }}
+        switchToRegister={switchToRegister}
       />
 
       <RegisterModal
         isOpen={showRegisterModal}
         onClose={() => setShowRegisterModal(false)}
+        switchToLogin={switchToLogin}
       />
       {showAnnouncement && (
         <div className={styles.announcementBar}>
@@ -222,7 +255,7 @@ export default function Header() {
             />
           </div>
 
-          <Link href="/Cart">
+          <Link href="/cart">
             <Image
               src="/images/Cart.png"
               alt="Cart"
@@ -231,15 +264,41 @@ export default function Header() {
               className={styles.icon}
             />
           </Link>
-          <Image
-            src="/images/User.png"
-            alt="User"
-            width={24}
-            height={24}
-            className={styles.icon}
-            onClick={() => setShowLoginModal(true)}
-            style={{ cursor: "pointer" }}
-          />
+          
+          {isAuthenticated ? (
+            <div className={styles.userMenuContainer} ref={userMenuRef}>
+              <Image
+                src="/images/User.png"
+                alt="User"
+                width={24}
+                height={24}
+                className={styles.icon}
+                onClick={toggleUserMenu}
+                style={{ cursor: "pointer" }}
+              />
+              {showUserMenu && (
+                <div className={styles.userMenu}>
+                  <div className={styles.userInfo}>
+                    <p className={styles.userEmail}>{user?.email}</p>
+                    <p className={styles.userName}>{user?.first_name} {user?.last_name}</p>
+                  </div>
+                  <button className={styles.logoutButton} onClick={handleLogout}>
+                    Logout
+                  </button>
+                </div>
+              )}
+            </div>
+          ) : (
+            <Image
+              src="/images/User.png"
+              alt="User"
+              width={24}
+              height={24}
+              className={styles.icon}
+              onClick={() => setShowLoginModal(true)}
+              style={{ cursor: "pointer" }}
+            />
+          )}
         </div>
       </nav>
     </>
