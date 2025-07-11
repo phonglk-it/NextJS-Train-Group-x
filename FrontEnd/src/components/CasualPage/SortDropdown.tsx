@@ -82,13 +82,6 @@ export default function SortDropdown({
             </ul>
           )}
         </div>
-        <button
-          className={styles.filterBtn}
-          onClick={onFilterClick}
-          aria-label="Open filter sidebar"
-        >
-          <FaSlidersH />
-        </button>
       </div>
     </div>
   );
