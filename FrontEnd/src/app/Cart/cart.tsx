@@ -8,63 +8,106 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 
 const Cart = () => {
-  const [products, setProducts] = useState([
-    {
-      id: 1,
-      name: 'Gradient Graphic T-shirt',
-      size: 'Large',
-      color: 'White',
-      price: 145,
-      image: '/images/Product-1.png',
-      quantity: 1
-    },
-    {
-      id: 2,
-      name: 'CHECKERED SHIRT',
-      size: 'Medium',
-      color: 'Red',
-      price: 180,
-      image: '/images/Product-2.png',
-      quantity: 1
-    },
-    {
-      id: 3,
-      name: 'CHECKERED SHIRT',
-      size: 'Large',
-      color: 'Blue',
-      price: 240,
-      image: '/images/Product-3.png',
-      quantity: 1
+  
+  const [products, setProducts] = useState([]);
+
+  const handleDelete = async (id: number) => {
+    try {
+      const res = await fetch(`http://127.0.0.1:8000/carts/${id}/`, {
+        method: 'DELETE',
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+      });
+  
+      if (res.ok) {
+        setProducts(products.filter(item => item.id !== id));
+      } else {
+        console.error("Failed to delete cart item");
+      }
+    } catch (err) {
+      console.error("Delete error:", err);
     }
-  ]);
-
-  const handleDelete = (id: number) => {
-    setProducts(products.filter(item => item.id !== id));
   };
-
+  
+  const updateQuantity = async (id: number, quantity: number) => {
+    try {
+      const res = await fetch(`http://127.0.0.1:8000/carts/${id}/`, {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+        },
+        body: JSON.stringify({ quantity }),
+      });
+  
+      if (!res.ok) throw new Error("Update failed");
+  
+      setProducts(prev =>
+          prev.map(product =>
+          product.id === id ? { ...product, quantity } : product
+        )
+      );
+    } catch (err) {
+      console.error("Update quantity error:", err);
+    }
+  };
+  
   const increaseQuantity = (id: number) => {
-    setProducts(prev =>
-      prev.map(product =>
-        product.id === id
-          ? { ...product, quantity: product.quantity + 1 }
-          : product
-      )
-    );
+    const item = products.find(p => p.id === id);
+    if (item) updateQuantity(id, item.quantity + 1);
   };
-
+  
   const decreaseQuantity = (id: number) => {
-    setProducts(prev =>
-      prev.map(product =>
-        product.id === id && product.quantity > 1
-          ? { ...product, quantity: product.quantity - 1 }
-          : product
-      )
-    );
+    const item = products.find(p => p.id === id);
+    if (item && item.quantity > 1) updateQuantity(id, item.quantity - 1);
   };
+  
 
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
     AOS.refresh();
+  
+    const fetchCartItems = async () => {
+      try {
+        const res = await fetch("http://127.0.0.1:8000/carts/", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            'Content-Type': 'application/json',
+          },
+        });
+  
+        if (!res.ok) throw new Error("Failed to fetch cart items");
+  
+        const data = await res.json();
+        console.log("Fetched cart items:", data);
+
+        let items = [];
+        if (Array.isArray(data)) {
+          items = data;
+        } else if (Array.isArray(data.results)) {
+          items = data.results;
+        } else {
+          items = [];
+          console.error("Cart API did not return an array or paginated results:", data);
+        }
+
+        const transformed = items.map((item: any) => ({
+          id: item.id,
+          name: item.product.name,
+          price: item.product.price,
+          image: '/images/Product-1.png', // Tạm fix
+          quantity: item.quantity,
+          size: 'Large',
+          color: 'White',
+        }));
+        setProducts(transformed);
+      } catch (err) {
+        console.error("Fetch error:", err);
+      }
+    };
+  
+    fetchCartItems();
   }, []);
 
   const subtotal = products.reduce((sum, item) => sum + item.price * item.quantity, 0);
