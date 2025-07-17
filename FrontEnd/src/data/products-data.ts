@@ -3,7 +3,7 @@ import { Product } from "@/types/Product";
 export const newArrivals: Product[] = [
   {
     id: 1,
-    name: "T-shirt with Tape Details",
+    name: "T-SHIRT WITH TAPE DETAILS",
     price: 120,
     rating: 4.5,
     image: "/images/tshirt-1.png",
@@ -26,7 +26,7 @@ export const newArrivals: Product[] = [
   },
   {
     id: 4,
-    name: "Sleeve Striped t-shirt",
+    name: "SLEEVE STRIPED T-SHIRT",
     price: 130,
     oldPrice: 160,
     discount: "-30%",
@@ -47,7 +47,7 @@ export const topSelling: Product[] = [
   },
   {
     id: 6,
-    name: "Courage Graphic T-shirt",
+    name: "COURAGE GRAPHIC T-SHIRT",
     price: 145,
     rating: 4.0,
     image: "/images/tshirt-3.png",
@@ -68,6 +68,19 @@ export const topSelling: Product[] = [
   },
 ];
 
+const sizes = [
+  "XX-Small",
+  "SX-Small",
+  "Small",
+  "Medium",
+  "Large",
+  "X-Large",
+  "XX-Large",
+  "3X-Large",
+  "4X-Large",
+];
+
+
 export const casual: Product[] = [
   {
     id: 9,
@@ -75,6 +88,10 @@ export const casual: Product[] = [
     price: 145,
     rating: 3.55,
     image: "/images/Gradient-Graphic-T-shirt.png",
+    category: ["T-shirts"], 
+    color: ["white"],
+    size: sizes,
+    dressStyle: ["Casual"]
   },
   {
     id: 10,
@@ -82,6 +99,10 @@ export const casual: Product[] = [
     price: 180,
     rating: 3.5,
     image: "/images/Polo-with-Tipping-Details.png",
+    category: ["T-shirts"],
+    color: ["black"],
+    size: sizes,
+    dressStyle: ["Casual"]
   },
   {
     id: 11,
@@ -89,6 +110,10 @@ export const casual: Product[] = [
     price: 180,
     rating: 4.5,
     image: "/images/Black-Striped-T-shirt.png",
+    category: ["T-shirts"],
+    color: ["black"],
+    size: sizes,
+    dressStyle: ["Casual"]
   },
   {
     id: 12,
@@ -98,6 +123,10 @@ export const casual: Product[] = [
     discount: "-20%",
     rating: 3.5,
     image: "/images/jeans-1.png",
+    category: ["Jeans"],
+    color: ["black"],
+    size: sizes,
+    dressStyle: ["Casual"]
   },
   {
     id: 13,
@@ -105,6 +134,10 @@ export const casual: Product[] = [
     price: 180,
     rating: 4.5,
     image: "/images/shirt-1.png",
+    category: ["Shirts"],
+    color: ["black"],
+    size: sizes,
+    dressStyle: ["Casual"]
   },
   {
     id: 14,
@@ -114,6 +147,10 @@ export const casual: Product[] = [
     discount: "-30%",
     rating: 4.5,
     image: "/images/tshirt-2.png",
+    category: ["T-shirts"],
+    color: ["white"],
+    size: sizes,
+    dressStyle: ["Casual"]
   },
   {
     id: 15,
@@ -123,6 +160,10 @@ export const casual: Product[] = [
     image: "/images/shirt-2.png",
     oldPrice: 232,
     discount: "-20%",
+    category: ["Shirts"],
+    color: ["black"],
+    size: sizes,
+    dressStyle: ["Casual"]
   },
   {
     id: 16,
@@ -130,6 +171,10 @@ export const casual: Product[] = [
     price: 145,
     rating: 4.0,
     image: "/images/tshirt-3.png",
+    category: ["T-shirts"],
+    color: ["white"],
+    size: sizes,
+    dressStyle: ["Casual"]
   },
   {
     id: 17,
@@ -137,5 +182,42 @@ export const casual: Product[] = [
     price: 80,
     rating: 3.0,
     image: "/images/shorts-1.png",
+    category: ["Shorts"],
+    color: ["black"],
+    size: sizes,
+    dressStyle: ["Casual"]
   },
+  {
+    id: 18,
+    name: "Faded Skinny Jeans",
+    price: 210,
+    rating: 4.5,
+    image: "/images/jeans-2.png",
+    category: ["Jeans"],
+    color: ["black"],
+    size: sizes,
+    dressStyle: ["Casual"]
+  },
+  {
+    id: 19,
+    name: "Vertical Striped Shirt",
+    price: 210,
+    rating: 4.5,
+    image: "/images/shirt-2.png",
+    category: ["Shirts"],
+    color: ["black"],
+    size: sizes,
+    dressStyle: ["Casual"]
+  },
+  {
+    id: 20,
+    name: "Checkered Shirt",
+    price: 210,
+    rating: 4.5,
+    image: "/images/shirt-1.png",
+    category: ["Shirts"],
+    color: ["black"],
+    size: sizes,
+    dressStyle: ["Casual"]
+  }
 ];

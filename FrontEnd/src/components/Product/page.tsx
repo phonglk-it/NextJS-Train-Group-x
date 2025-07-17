@@ -62,13 +62,18 @@ const ProductSkeleton = () => (
   </div>
 );
 
-export default function ProductPage({ params }: { params: { id: string } }) {
+export default function ProductDetailPage({
+  params,
+}: {
+  params: { id: string };
+}) {
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [isInWishlist, setIsInWishlist] = useState(false);
   const [isAddingToCart, setIsAddingToCart] = useState(false);
 
-  const product = casual.find((item) => item.id === params.id);
+  // Fix: Ensure params.id is a string and product.id is compared as string
+  const product = casual.find((item) => String(item.id) === String(params.id));
 
   useEffect(() => {
     // Simulate loading time
@@ -83,6 +88,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
   }
 
   const handleQuantityChange = (newQuantity: number) => {
+    if (Number.isNaN(newQuantity)) return;
     if (newQuantity >= 1 && newQuantity <= 99) {
       setQuantity(newQuantity);
     }
@@ -98,9 +104,9 @@ export default function ProductPage({ params }: { params: { id: string } }) {
   };
 
   const handleWishlistToggle = () => {
-    setIsInWishlist(!isInWishlist);
+    setIsInWishlist((prev) => !prev);
     // Here you would typically update wishlist state or call API
-    alert(isInWishlist ? "Removed from wishlist" : "Added to wishlist");
+    alert(!isInWishlist ? "Added to wishlist" : "Removed from wishlist");
   };
 
   const calculateDiscountPercentage = () => {
@@ -171,9 +177,10 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                   <input
                     type="number"
                     value={quantity}
-                    onChange={(e) =>
-                      handleQuantityChange(parseInt(e.target.value) || 1)
-                    }
+                    onChange={(e) => {
+                      const val = parseInt(e.target.value, 10);
+                      handleQuantityChange(Number.isNaN(val) ? 1 : val);
+                    }}
                     className={styles.quantityInput}
                     min="1"
                     max="99"
@@ -186,6 +193,24 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                     +
                   </button>
                 </div>
+              </div>
+              {/* Add to Cart and Wishlist Buttons */}
+              <div className={styles.buttonRow}>
+                <button
+                  className={styles.addToCartButton}
+                  onClick={handleAddToCart}
+                  disabled={isAddingToCart}
+                >
+                  {isAddingToCart ? "Adding..." : "Add to Cart"}
+                </button>
+                <button
+                  className={`${styles.wishlistButton} ${
+                    isInWishlist ? styles.inWishlist : ""
+                  }`}
+                  onClick={handleWishlistToggle}
+                >
+                  {isInWishlist ? "♥ In Wishlist" : "♡ Add to Wishlist"}
+                </button>
               </div>
             </div>
           </div>

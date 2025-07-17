@@ -6,4 +6,8 @@ export interface Product {
   image: string;
   oldPrice?: number;
   discount?: string;
+  category?: string[];  
+  color?: string[];         
+  size?: string[]; 
+  dressStyle?: string[]; 
 }

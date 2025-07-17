@@ -5,15 +5,34 @@ import ResponsiveFilterSidebar from "@/components/CasualPage/ResponsiveFilterSid
 import SortDropdown from "@/components/CasualPage/SortDropdown";
 import Pagination from "@/components/CasualPage/Pagination";
 import { casual } from "@/data/products-data";
+import { Product } from "@/types/Product";
 import ProductCard from "@/components/Product/ProductCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function CasualPage() {
-  const [sort, setSort] = useState("popular");
-  const [products, setProducts] = useState(casual);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [sort, setSort] = useState<string>("popular");
+  const [products, setProducts] = useState<Product[]>([]);
+  const [originalProducts, setOriginalProducts] = useState<Product[]>([]);
+  const [currentPage, setCurrentPage] = useState<number>(1);
   const pageSize = 9;
+
+  // Fetch sản phẩm từ API khi load trang
+  useEffect(() => {
+    fetch("http://localhost:8000/api/products/")
+      .then((res) => res.json())
+      .then((data) => {
+        setProducts(data);
+        setOriginalProducts(data);
+      });
+  }, []);
+
   const totalPages = Math.ceil(products.length / pageSize);
+  console.log(products);
+  console.log(originalProducts);
+  console.log(sort);
+  console.log(currentPage);
+  console.log(pageSize);
+  console.log(totalPages);
 
   function handleSortChange(sortValue: string) {
     setSort(sortValue);
@@ -24,11 +43,13 @@ export default function CasualPage() {
       } else if (sortValue === "highToLow") {
         sorted.sort((a, b) => b.price - a.price);
       } else if (sortValue === "newest") {
-        return [...casual]; // giả sử dữ liệu đã sắp xếp theo newest
+        // Assuming newest means the original order from API
+        return [...originalProducts];
       } else if (sortValue === "rating") {
         sorted.sort((a, b) => b.rating - a.rating);
       } else {
-        return [...casual]; // popular mặc định
+        // popular mặc định, fallback to original order
+        return [...originalProducts];
       }
       return sorted;
     });
@@ -43,7 +64,11 @@ export default function CasualPage() {
 
   return (
     <div className={styles.pageContainer}>
-      <ResponsiveFilterSidebar isOpen={true} onClose={() => {}} />
+      <ResponsiveFilterSidebar
+        isOpen={true}
+        onClose={() => {}}
+        onFilterChange={setProducts}
+      />
       <div className={styles.mainContent}>
         <SortDropdown onSortChange={handleSortChange} />
         <div className={styles.productGrid}>

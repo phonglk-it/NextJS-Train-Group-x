@@ -3,20 +3,17 @@
 import React, { useState } from "react";
 
 import styles from "./pagination.module.css";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 
 const Pagination = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 10; // ví dụ 10 trang
-
-  const handleClick = (page: number) => {
-    if (page >= 1 && page <= totalPages) {
-      setCurrentPage(page);
-    }
-  };
+  const totalPages = 10; // Số trang thực tế
+  const searchParams = useSearchParams();
+  const currentPage = Number(searchParams.get("page")) || 1;
 
   // Hàm tạo mảng số trang với dấu ...
   const getPageNumbers = () => {
-    const pages = [];
+    const pages: (number | string)[] = [];
     if (totalPages <= 7) {
       for (let i = 1; i <= totalPages; i++) pages.push(i);
     } else {
@@ -49,39 +46,43 @@ const Pagination = () => {
 
   return (
     <div className={styles.pagination}>
-      <button
-        className={styles.pageButton}
-        onClick={() => handleClick(currentPage - 1)}
-        disabled={currentPage === 1}
+      <Link
+        href={`/casual?page=${currentPage - 1}`}
+        className={styles.navButton}
+        aria-disabled={currentPage === 1}
+        tabIndex={currentPage === 1 ? -1 : 0}
       >
-        <span style={{ marginRight: 4 }}>←</span> Previous
-      </button>
-
-      {getPageNumbers().map((page, idx) =>
-        page === "..." ? (
-          <span key={"ellipsis-" + idx} className={styles.ellipsis}>
-            ...
-          </span>
-        ) : (
-          <button
-            key={page}
-            className={`${styles.pageButton} ${
-              currentPage === page ? styles.active : ""
-            }`}
-            onClick={() => handleClick(Number(page))}
-          >
-            {page}
-          </button>
-        )
-      )}
-
-      <button
-        className={styles.pageButton}
-        onClick={() => handleClick(currentPage + 1)}
-        disabled={currentPage === totalPages}
+        <span style={{ fontSize: "1.2em" }}>←</span>
+        Previous
+      </Link>
+      <div className={styles.paginationInner}>
+        {getPageNumbers().map((page, idx) =>
+          page === "..." ? (
+            <span key={"ellipsis-" + idx} className={styles.ellipsis}>
+              ...
+            </span>
+          ) : (
+            <Link
+              key={page}
+              href={`/casual?page=${page}`}
+              className={`${styles.pageButton} ${
+                currentPage === page ? styles.activePage : ""
+              }`}
+            >
+              {page}
+            </Link>
+          )
+        )}
+      </div>
+      <Link
+        href={`/casual?page=${currentPage + 1}`}
+        className={styles.navButton}
+        aria-disabled={currentPage === totalPages}
+        tabIndex={currentPage === totalPages ? -1 : 0}
       >
-        Next <span style={{ marginLeft: 4 }}>→</span>
-      </button>
+        Next
+        <span style={{ fontSize: "1.2em" }}>→</span>
+      </Link>
     </div>
   );
 };

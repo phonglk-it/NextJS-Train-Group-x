@@ -7,7 +7,6 @@ import { newArrivals, topSelling } from "@/data/products-data";
 import { useSearchParams } from "next/navigation";
 import Customers from "@/components/Customers/customers";
 import Style from "@/components/Style/style";
-import Link from "next/link";
 
 interface CounterProps {
   target: string;
@@ -48,7 +47,6 @@ const Counter = ({ target, duration }: CounterProps) => {
 
 export default function Home() {
   const searchParams = useSearchParams();
-  const [heroImgSrc, setHeroImgSrc] = useState("/images/homepage__image.jpg");
 
   useEffect(() => {
     const scroll = searchParams.get("scroll");
@@ -59,19 +57,6 @@ export default function Home() {
       }, 200);
     }
   }, [searchParams]);
-
-  useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 1200) {
-        setHeroImgSrc("/images/Background-hero.png");
-      } else {
-        setHeroImgSrc("/images/homepage__image.jpg");
-      }
-    };
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
 
   return (
     <div className={styles.homepageContainer}>
@@ -123,7 +108,7 @@ export default function Home() {
         </div>
         <div className={styles.heroImageContainer}>
           <Image
-            src={heroImgSrc}
+            src="/images/Background-hero.png"
             alt="Hero Section"
             fill
             className={styles.heroImage}
@@ -184,6 +169,8 @@ export default function Home() {
         products={topSelling}
         id="top-selling-section"
       />
+      <Style />
+      <Customers />
     </div>
   );
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
-import styles from "./sortDropdown.module.css";
+import styles from "./SortDropdown.module.css";
 import { FaChevronDown, FaSlidersH } from "react-icons/fa";
 
 const SORT_OPTIONS = [
@@ -82,13 +82,6 @@ export default function SortDropdown({
             </ul>
           )}
         </div>
-        <button
-          className={styles.filterBtn}
-          onClick={onFilterClick}
-          aria-label="Open filter sidebar"
-        >
-          <FaSlidersH />
-        </button>
       </div>
     </div>
   );

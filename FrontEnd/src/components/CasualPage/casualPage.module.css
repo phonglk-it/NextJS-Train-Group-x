@@ -26,8 +26,8 @@
 
 .productGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 21px;
 }
 
 .paginationDivider {
@@ -43,6 +43,6 @@
   }
 
   .productGrid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 }

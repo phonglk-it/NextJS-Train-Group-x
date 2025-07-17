@@ -190,25 +190,3 @@
   color: #000;
   background: #f5f5f5;
 }
-
-.filterBtn {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #f4f4f4;
-  border: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 12px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  cursor: pointer;
-  transition: background 0.2s;
-}
-.filterBtn:hover {
-  background: #e0e0e0;
-}
-.filterBtn svg {
-  font-size: 20px;
-  color: #222;
-}

@@ -74,12 +74,6 @@
   color: #000;
   font-family: "Satoshi", sans-serif;
   font-weight: 400;
-  /* Có thể có text-transform ở đây, cần ghi đè cho Brands */
-}
-
-/* Ghi đè cho Brands menu link */
-.brandsMenuLink {
-  text-transform: none !important;
 }
 
 .searchAndIcons {
