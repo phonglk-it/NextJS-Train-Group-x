@@ -11,6 +11,7 @@ class Product(models.Model):
     size = models.CharField(max_length=20, null=True, blank=True)
     dress_style = models.CharField(max_length=50, null=True, blank=True)
 
-class Meta:
-    verbose_name = "Product"
-    verbose_name_plural = "Products"
+    class Meta:
+        verbose_name = "Product"
+        verbose_name_plural = "Products"
+

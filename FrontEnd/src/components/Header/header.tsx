@@ -1,11 +1,12 @@
 "use client";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import styles from "./header.module.css";
 import { useRouter, usePathname } from "next/navigation";
 import LoginModal from "@/components/login/login";
 import RegisterModal from "../register/register";
+import { useAuth } from "@/contexts/AuthContext";
 
 
 export default function Header() {
@@ -18,7 +19,27 @@ export default function Header() {
 
   const router = useRouter();
   const pathname = usePathname();
-  
+  const { user, logout, loading } = useAuth();
+  const [showUserMenu, setShowUserMenu] = useState(false);
+  const userMenuRef = useRef<HTMLDivElement>(null);
+
+  // Đóng menu khi click ra ngoài
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (userMenuRef.current && !userMenuRef.current.contains(event.target as Node)) {
+        setShowUserMenu(false);
+      }
+    }
+    if (showUserMenu) {
+      document.addEventListener("mousedown", handleClickOutside);
+    } else {
+      document.removeEventListener("mousedown", handleClickOutside);
+    }
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [showUserMenu]);
+
   const switchToRegister = () => {
     setShowLoginModal(false);
     setShowRegisterModal(true);
@@ -54,6 +75,10 @@ export default function Header() {
       <RegisterModal
         isOpen={showRegisterModal}
         onClose={() => setShowRegisterModal(false)}
+        switchToLogin={() => {
+          setShowRegisterModal(false);
+          setShowLoginModal(true);
+        }}
       />
       {showAnnouncement && (
         <div className={styles.announcementBar}>
@@ -216,15 +241,39 @@ export default function Header() {
               className={styles.icon}
             />
           </Link>
-          <Image
-            src="/images/User.png"
-            alt="User"
-            width={24}
-            height={24}
-            className={styles.icon}
-            onClick={() => setShowLoginModal(true)}
-            style={{ cursor: "pointer" }}
-          />
+          {/* Hiển thị user info hoặc icon user */}
+          <div style={{ position: "relative" }} ref={userMenuRef}>
+            <Image
+              src="/images/User.png"
+              alt="User"
+              width={24}
+              height={24}
+              className={styles.icon}
+              onClick={() => {
+                if (!user) {
+                  setShowLoginModal(true);
+                } else {
+                  setShowUserMenu((v) => !v);
+                }
+              }}
+              style={{ cursor: "pointer" }}
+            />
+            {user && showUserMenu && (
+              <div className={styles.userDropdownMenu}>
+                {loading ? null : (
+                  <>
+                    <div className={styles.userDropdownInfo}>
+                      <div><b>Name:</b> {user.first_name} {user.last_name}</div>
+                      <div><b>Email:</b> {user.email}</div>
+                    </div>
+                    <button className={styles.logoutBtn} onClick={() => { logout(); setShowUserMenu(false); }}>
+                      Logout
+                    </button>
+                  </>
+                )}
+              </div>
+            )}
+          </div>
         </div>
       </nav>
     </>
