@@ -9,7 +9,6 @@ import 'aos/dist/aos.css';
 import { useAuth } from '@/contexts/AuthContext';
 import LoginModal from '@/components/login/login';
 
-// Định nghĩa kiểu dữ liệu cho sản phẩm trong giỏ hàng
 interface CartProduct {
   id: number;
   name: string;
@@ -25,7 +24,6 @@ const Cart = () => {
   const [showLoginModal, setShowLoginModal] = useState(false);
   const [products, setProducts] = useState<CartProduct[]>([]);
 
-  // Hook này luôn được gọi, không phụ thuộc điều kiện
   useEffect(() => {
     if (!loading && !user) {
       setShowLoginModal(true);
@@ -34,7 +32,6 @@ const Cart = () => {
     }
   }, [user, loading]);
 
-  // Hook này cũng luôn được gọi
   useEffect(() => {
     AOS.init({ duration: 800, once: true });
     AOS.refresh();
@@ -67,10 +64,10 @@ const Cart = () => {
           id: item.id,
           name: item.product.name,
           price: item.product.price,
-          image: '/images/Product-1.png', // Tạm fix
+          image: item.product.image,
           quantity: item.quantity,
-          size: 'Large',
-          color: 'White',
+          size: item.product.size,
+          color: item.product.color,
         }));
         setProducts(transformed);
       } catch (err) {
@@ -81,7 +78,6 @@ const Cart = () => {
     fetchCartItems();
   }, []);
 
-  // Nếu đang loading, không render gì cả
   if (loading) return null;
 
   return (
@@ -96,7 +92,6 @@ const Cart = () => {
       )}
       {/* Nếu đã đăng nhập, render cart */}
       {user && (() => {
-        // Các hàm xử lý cart chỉ dùng khi đã đăng nhập
         const handleDelete = async (id: number) => {
           try {
             const res = await fetch(`http://127.0.0.1:8000/carts/${id}/`, {
